@@ -1,5 +1,7 @@
-"""
-Labirinto Tosco!
+""" Labirinto Tosco!
+    Alexandre B A Villares - http://abav.lugaralgum.com
+    Para rodar, instale o Processing Python Mode:
+    http://abav.lugaralgum.com/como-instalar-o-processing-modo-python/
 """
 
 tamanho = 30 # tamanho das células da grade
