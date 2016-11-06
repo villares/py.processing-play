@@ -1,6 +1,6 @@
 '''
-Prova de conceito, programa de desenho para 
-simetrias radiais
+Alexandre B A Villares - http://abav.lugaralgum.com
+Prova de conceito, programa de desenho com simetria radial
 '''
 
 def setup():
