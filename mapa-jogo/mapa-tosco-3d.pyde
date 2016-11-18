@@ -70,7 +70,7 @@ class Quadrado():
             fill(255)       # branco
             textSize(10)  # para escrever o tipo se o mouse estiver perto
             if (dist(posX, posY, mouseX, mouseY) < TAMANHO * 2):
-                text(self.tipo, 0, 20,10)
+                text(self.tipo, 0, 20, self.altura+5)
                 
 def no_mapa(fila, coluna):
         return MAPA[coluna + fila * COLUNAS]
