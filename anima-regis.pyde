@@ -7,23 +7,22 @@ d, x, y = 5, 5, 5
 
 def setup():
     ''' como o setup() do Arduino! Roda só no início'''
-
     size(600, 200)
     # frameRate(24) # opcional
-    # noStroke()  # sem borda mata as linhas!!!
-    stroke(255) # bordas/linhas brancas
+    # noStroke()    # sem borda mata as linhas!!!
+    stroke(255)     # bordas/linhas brancas
+    fill(0, 0, 255, 128)  # azul translúcido
 
-def draw():    
+def draw():
     ''' equivalente ao loop() do Arduino é um loop infinito principal '''
-
-    global x, y, d # pra poder alterar a posição e diâmetro do círculo
-    background(0) # fundo preto (e limpa o frama da animação)
+    global x, y, d  # pra poder alterar a posição e diâmetro do círculo
+    background(0)  # fundo preto (e limpa o frama da animação)
     # draw lines
     line(45, 100, 555, 100)
-    for i in range(50,551,250):
-        line(i,80,i,120)
-    for i in range(50,610,50):
-        line(i,90,i,110)
+    for i in range(50, 551, 250):
+        line(i, 80, i, 120)
+    for i in range(50, 610, 50):
+        line(i, 90, i, 110)
     # draw circle
     ellipse(x, y, d, d)
     # animate circle
@@ -31,4 +30,7 @@ def draw():
     x += 1
     y += 0.6
 
-
+    if frameCount % 10 == 0:        # a cada 10 frames
+        saveFrame("anima-###.png")  # salva um PNG
+    if frameCount == 900:   # para no 900
+        noLoop()
