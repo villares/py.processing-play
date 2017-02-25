@@ -16,12 +16,12 @@ def setup():
 def draw():
     background(128)             # limpa a tela
     for ponto in lista:                  # para cada ponto
+        ponto.desenha()
+        ponto.move()
         for outro_ponto in lista:        # pegua um segundo ponto (inclui o mesmo)
             if ponto != outro_ponto:     # checa se não é o mesmo
                 Ponto.desenha_linha(ponto, outro_ponto) # desenha setas
-                ponto.desenha()
-                ponto.move()
-        
+                
 def cor_rnd(alpha_value=128):
     return color(random(128,255), random(128,255), random(128,255), alpha_value)
 
@@ -43,8 +43,8 @@ class Ponto:
         self.x = x
         self.y = y
         self.cor = cor
-        self.vx = random(-0.05,0.05)
-        self.vy = random(-0.05,0.05) 
+        self.vx = random(-0.5,0.5)
+        self.vy = random(-0.5,0.5) 
 
     def desenha(self):
         if dist(mouseX, mouseY, self.x, self.y) < tamanho*3/2:
@@ -76,5 +76,3 @@ class Ponto:
             line(0, offset, 0, -d - offset)
             line(0, offset, -head/3, -head + offset)
             line(0, offset, head/3, -head + offset)
-    
-    
