@@ -2,8 +2,8 @@
     Brincando com uma lista de pontos --> github.com/villares
     Para rodar, instale o Processing Modo Python.
 """
-lista_pontos = []  # lista de pontos
-lista_arestas = []
+pontos = set()  # pontos
+arestas = []
 
 tamanho = 30 # tamanho dos 'pontos'
 velocidade = 0.2 
@@ -17,21 +17,22 @@ def setup():
     for _ in range(pontos_iniciais):
         x, y = random(width), random(height)
         cor = cor_rnd() # sorteia cor
-        lista_pontos.append(Ponto(x, y, cor))  # acrescenta um ponto na lista
-    for i, ponto in enumerate(lista_pontos):
-        for outro_ponto in lista_pontos[i:]:
+        pontos.add(Ponto(x, y, cor))  # acrescenta um ponto na lista
+    uns_pontos = list(pontos)
+    for i, ponto in enumerate(uns_pontos):
+        for outro_ponto in uns_pontos[i:]:
             if ponto != outro_ponto:  # checa se não é o mesmo
                 nova_aresta = Aresta(ponto, outro_ponto)
-                lista_arestas.append(nova_aresta)
+                arestas.append(nova_aresta)
 
 def draw():
     background(128)             # limpa a tela
-    for ponto in lista_pontos:  # para cada ponto
+    for ponto in pontos:  # para cada ponto
         ponto.desenha()
         ponto.move()
-    for aresta in lista_arestas:
-        if (aresta.p1 not in lista_pontos) or (aresta.p2 not in lista_pontos):
-            lista_arestas.remove(aresta)
+    for aresta in arestas:
+        if (aresta.p1 not in pontos) or (aresta.p2 not in pontos):
+            arestas.remove(aresta)
             print(aresta.p1, aresta.p2)
         else:
             aresta.desenha_linha()
@@ -41,17 +42,17 @@ def cor_rnd(alpha_value=128):
 
 def mouseClicked():  # ao soltar do mouse
     novo_ponto = Ponto(mouseX, mouseY, cor_rnd())
-    for ponto in lista_pontos:
+    for ponto in pontos:
         nova_aresta = Aresta(ponto, novo_ponto)
-        lista_arestas.append(nova_aresta)
-    lista_pontos.append(novo_ponto)  # acrescenta poneto na pos. clicada
+        arestas.append(nova_aresta)
+    pontos.add(novo_ponto)  # acrescenta poneto na pos. clicada
 
 def keyPressed():               # tecla pressionada
-    if len(lista_pontos) > 1:          # se a lista tiver pelo menos 2 pontos
-        removido = lista_pontos.pop(0)  # remove primeiro ponto da lista
+    if len(pontos) > 1:          # se a lista tiver pelo menos 2 pontos
+        removido = pontos.pop()  # remove primeiro ponto da lista
 
 def mouseDragged():
-    for ponto in lista_pontos:                  # para cada ponto
+    for ponto in pontos:                  # para cada ponto
         if dist(mouseX, mouseY, ponto.x, ponto.y) < tamanho * 3 / 2:
             ponto.x, ponto.y = mouseX, mouseY
 
@@ -73,7 +74,7 @@ class Ponto():
             noFill()
             ellipse(self.x, self.y, tamanho * 3, tamanho * 3)
             fill(0)
-            text(str(len(lista_pontos))+" "+str(len(lista_arestas)), self.x, self.y)
+            text(str(len(pontos))+" "+str(len(arestas)), self.x, self.y)
         stroke(255)
 
     def move(self):
