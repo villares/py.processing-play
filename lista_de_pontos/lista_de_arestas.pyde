@@ -1,11 +1,12 @@
 """ Alexandre B A Villares - abav.lugaralgum.com
     Brincando com uma lista de pontos --> github.com/villares
+    Para rodar, instale o Processing Modo Python.
 """
 lista_pontos = []  # lista de pontos
 lista_arestas = []
 
-tamanho = 30
-velocidade = 0.2
+tamanho = 30 # tamanho dos 'pontos'
+velocidade = 0.2 
 pontos_iniciais = 5
 
 def setup():
@@ -31,7 +32,9 @@ def draw():
     for aresta in lista_arestas:
         if (aresta.p1 not in lista_pontos) or (aresta.p2 not in lista_pontos):
             lista_arestas.remove(aresta)
-        aresta.desenha_linha()
+            print(aresta.p1, aresta.p2)
+        else:
+            aresta.desenha_linha()
 
 def cor_rnd(alpha_value=128):
     return color(random(128, 255), random(128, 255), random(128, 255), alpha_value)
@@ -70,7 +73,7 @@ class Ponto():
             noFill()
             ellipse(self.x, self.y, tamanho * 3, tamanho * 3)
             fill(0)
-            text(len(lista_arestas), self.x, self.y)
+            text(str(len(lista_pontos))+" "+str(len(lista_arestas)), self.x, self.y)
         stroke(255)
 
     def move(self):
