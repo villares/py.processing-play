@@ -14,12 +14,12 @@ def setup():
     stroke(255)     # traço/linha e branco
     noFill()       # sem preenchinmento
     for _ in range(pontos_iniciais):
-        x, y, cor = random(width), random(
-            height), cor_rnd()  # sorteia propriedades
+        x, y = random(width), random(height)
+        cor = cor_rnd() # sorteia cor
         lista_pontos.append(Ponto(x, y, cor))  # acrescenta um ponto na lista
     for i, ponto in enumerate(lista_pontos):
         for outro_ponto in lista_pontos[i:]:
-            if ponto != outro_ponto:     # checa se não é o mesmo
+            if ponto != outro_ponto:  # checa se não é o mesmo
                 nova_aresta = Aresta(ponto, outro_ponto)
                 lista_arestas.append(nova_aresta)
 
@@ -42,7 +42,6 @@ def mouseClicked():  # ao soltar do mouse
         nova_aresta = Aresta(ponto, novo_ponto)
         lista_arestas.append(nova_aresta)
     lista_pontos.append(novo_ponto)  # acrescenta poneto na pos. clicada
-
 
 def keyPressed():               # tecla pressionada
     if len(lista_pontos) > 1:          # se a lista tiver pelo menos 2 pontos
