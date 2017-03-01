@@ -36,7 +36,7 @@ def pointInsideLine(thePoint, theLineEndPoint1, theLineEndPoint2, theTolerance):
      closest.add(dir)
      d = PVector(thePoint.x, thePoint.y)
      d.sub(closest)
-\    distsqr = d.dot(d)
+     distsqr = d.dot(d)
      # check the distance of thePoto the line against our tolerance. 
      return (distsqr < pow(theTolerance,2)) 
   return False
