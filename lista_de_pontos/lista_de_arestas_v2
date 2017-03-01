@@ -1,13 +1,16 @@
-""" Alexandre B A Villares - abav.lugaralgum.com
-    Brincando com uma lista de pontos --> github.com/villares
+""" Alexandre B A Villares - http://abav.lugaralgum.com
+    Brincando com uma lista de pontos, e agora arestas.
     Para rodar, instale o Processing Modo Python.
+    Desenvolvido principalmente durante o Carnahacking 2017
+    no Garoa Hacker Clube - http://garoa.net.br
+    e publicado em https://github.com/villares/py.processing-play
 """
 
-pontos = set()  # pontos
-arestas = []
+pontos = set()  # conjunto de Pontos
+arestas = []    # lista de Arestas
 
-tamanho = 30 # tamanho dos 'pontos'
-velocidade = 0.2 
+tamanho = 30     # tamanho dos Pontos (influi no 'mouse over' e offset das setas)
+velocidade = 0.2 # para sorteio de velocidades iniciais random(+v,-v)
 pontos_iniciais = 5
 
 def setup():
@@ -16,50 +19,50 @@ def setup():
     for _ in range(pontos_iniciais):
         x, y = random(width), random(height)
         cor = cor_rnd() # sorteia uma cor
-        pontos.add(Ponto(x, y, cor))  # acrescenta um ponto
+        pontos.add(Ponto(x, y, cor))  # acrescenta um Ponto
 
 def draw():
     background(128)        # limpa a tela
-    for aresta in arestas: # checa se há arestas com pontos já removidos
+    for aresta in arestas: # checa se há Arestas com Pontos já removidos
         if (aresta.p1 not in pontos) or (aresta.p2 not in pontos):
-            arestas.remove(aresta)   # nesse caso remove a aresta também
+            arestas.remove(aresta)   # nesse caso remove a Aresta também
             # print(aresta.p1, aresta.p2)
-        else:                      # ou
-            aresta.desenha_linha() # desenha 
-    for ponto in pontos:  # para cada ponto desenha e atualiza posição
+        else:                # senão
+            aresta.desenha() # desenha a Aresta com uma seta! 
+    for ponto in pontos:  # cada Ponto desenha e atualiza sua posição
         ponto.desenha()
         ponto.move()
 
 def cor_rnd(alpha_value=128):       # helper para sortear uma cor
     return color(random(128, 255), random(128, 255), random(128, 255), alpha_value)
 
-def mouseClicked():  # clique do mouse seleciona/deseleciona pontos ou arestas
-    for ponto in pontos:   # para cada ponto checa distância do mouse
+def mouseClicked():  # Sob clique do mouse seleciona/deseleciona Pontos ou Arestas
+    for ponto in pontos:   # para cada Ponto checa distância do mouse
         if dist(mouseX, mouseY, ponto.x, ponto.y) < tamanho * 3 / 2:
-            ponto.sel = not ponto.sel
+            ponto.sel = not ponto.sel # inverte status de seleção
     mouse = PVector(mouseX, mouseY)
-    for aresta in arestas:    # para cada aresta checa o 'mouse over'
-        if pointInsideLine(mouse, aresta.p1, aresta.p2, 4):
-            aresta.sel = not aresta.sel
+    for aresta in arestas:    # para cada Aresta checa o 'mouse over'
+        if pointInsideLine(mouse, aresta.p1, aresta.p2, 6):
+            aresta.sel = not aresta.sel # inverte status de seleção
     
         
-def keyPressed():    # quando uma tecla é pressionada
-     # barra de espaço acrescenta pontos
+def keyPressed():   # Quando uma tecla é pressionada
+    # barra de espaço acrescenta Pontos na posição atual do mouse
     if key == ' ':
-        pontos.add(Ponto(mouseX, mouseY, cor_rnd()))  # acrescenta ponto na pos. do mouse
-    # 'd' remove os pontos selecionandos (com clique, marcados em preto)
+        pontos.add(Ponto(mouseX, mouseY, cor_rnd()))  # acrescenta Ponto no set
+    # 'd' remove os Pontos previamente selecionandos com clique, marcados em preto.
     if key == 'd' and len(pontos) > 1:
         for ponto in pontos:
             if ponto.sel and len(pontos) > 1:  # se a lista tiver pelo menos 2 pontos
                 pontos.remove(ponto)           # remove pontos selecionados
                 
 def mouseDragged():        # quando o mouse é arrastado
-    for ponto in pontos:   # para cada ponto checa distância do mouse
+    for ponto in pontos:   # para cada Ponto checa distância do mouse
         if dist(mouseX, mouseY, ponto.x, ponto.y) < tamanho * 3 / 2:
-            ponto.x, ponto.y = mouseX, mouseY    # move o ponto para posição do mouse
+            ponto.x, ponto.y = mouseX, mouseY    # move o Ponto para posição do mouse
             
 class Ponto():
-    " pontos num grafo "
+    " Pontos num grafo, velocidade inicial sorteada, criam Arestas com outros Pontos "
 
     def __init__(self, x, y, cor=color(0)):
         self.x = x
@@ -100,13 +103,14 @@ class Ponto():
             arestas.append(nova_aresta)
 
 class Aresta():
+    """ Arestas contém só dois Pontos e podem ou não estar selecionadas """
 
     def __init__(self, p1, p2):
         self.p1 = p1
         self.p2 = p2
         self.sel = False
 
-    def desenha_linha(self):
+    def desenha(self):
         x1, y1, x2, y2 = self.p1.x, self.p1.y, self.p2.x, self.p2.y
         d = dist(x1, y1, x2, y2)
         if self.sel:
