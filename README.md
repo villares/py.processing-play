@@ -1,4 +1,4 @@
-# py.processing-play - exemplos em Processing modo Python
+# Exemplos de Processing modo Python
 
 Para executar, baixe o IDE do Processing e instale o modo Python!<br>
 Passo a passo: https://abav.lugaralgum.com/como-instalar-o-processing-modo-python/
