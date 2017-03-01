@@ -13,40 +13,38 @@ pontos_iniciais = 5
 def setup():
     size(600, 600)
     strokeWeight(2)
-    stroke(255)     # traço/linha e branco
-    noFill()       # sem preenchinmento
     for _ in range(pontos_iniciais):
         x, y = random(width), random(height)
-        cor = cor_rnd() # sorteia cor
-        pontos.add(Ponto(x, y, cor))  # acrescenta um ponto na lista
+        cor = cor_rnd() # sorteia uma cor
+        pontos.add(Ponto(x, y, cor))  # acrescenta um ponto
 
 def draw():
-    background(128)             # limpa a tela
-    for aresta in arestas:
+    background(128)        # limpa a tela
+    for aresta in arestas: # checa se há arestas com pontos já removidos
         if (aresta.p1 not in pontos) or (aresta.p2 not in pontos):
-            arestas.remove(aresta)
-            print(aresta.p1, aresta.p2)
-        else:
-            aresta.desenha_linha()
-    for ponto in pontos:  # para cada ponto
+            arestas.remove(aresta)   # nesse caso remove a aresta também
+            # print(aresta.p1, aresta.p2)
+        else:                      # ou
+            aresta.desenha_linha() # desenha 
+    for ponto in pontos:  # para cada ponto desenha e atualiza posição
         ponto.desenha()
         ponto.move()
 
-def cor_rnd(alpha_value=128):
+def cor_rnd(alpha_value=128):       # helper para sortear uma cor
     return color(random(128, 255), random(128, 255), random(128, 255), alpha_value)
 
 def mouseClicked():  # clique do mouse seleciona/deseleciona pontos ou arestas
-    for ponto in pontos:   # para cada ponto
+    for ponto in pontos:   # para cada ponto checa distância do mouse
         if dist(mouseX, mouseY, ponto.x, ponto.y) < tamanho * 3 / 2:
             ponto.sel = not ponto.sel
     mouse = PVector(mouseX, mouseY)
-    for aresta in arestas:    # para cada aresta
+    for aresta in arestas:    # para cada aresta checa o 'mouse over'
         if pointInsideLine(mouse, aresta.p1, aresta.p2, 4):
             aresta.sel = not aresta.sel
     
         
-def keyPressed():               # tecla pressionada
-    # barra de espaço acrescenta pontos
+def keyPressed():    # quando uma tecla é pressionada
+     # barra de espaço acrescenta pontos
     if key == ' ':
         pontos.add(Ponto(mouseX, mouseY, cor_rnd()))  # acrescenta ponto na pos. do mouse
     # 'd' remove os pontos selecionandos (com clique, marcados em preto)
@@ -55,11 +53,11 @@ def keyPressed():               # tecla pressionada
             if ponto.sel and len(pontos) > 1:  # se a lista tiver pelo menos 2 pontos
                 pontos.remove(ponto)           # remove pontos selecionados
                 
-def mouseDragged():
-    for ponto in pontos:   # para cada ponto
+def mouseDragged():        # quando o mouse é arrastado
+    for ponto in pontos:   # para cada ponto checa distância do mouse
         if dist(mouseX, mouseY, ponto.x, ponto.y) < tamanho * 3 / 2:
-            ponto.x, ponto.y = mouseX, mouseY
-
+            ponto.x, ponto.y = mouseX, mouseY    # move o ponto para posição do mouse
+            
 class Ponto():
     " pontos num grafo "
 
@@ -70,7 +68,7 @@ class Ponto():
         self.cor = cor
         self.vx = random(-velocidade, velocidade)
         self.vy = random(-velocidade, velocidade)
-        self.sel = False
+        self.sel = False   # se está selecionado
         self.cria_arestas()
 
     def desenha(self):
