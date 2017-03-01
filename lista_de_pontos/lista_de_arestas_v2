@@ -2,7 +2,7 @@
     Brincando com uma lista de pontos --> github.com/villares
     Para rodar, instale o Processing Modo Python.
 """
-#from pontoNaLinha import *  
+
 pontos = set()  # pontos
 arestas = []
 shiftFlag = False
