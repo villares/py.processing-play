@@ -20,5 +20,9 @@ def draw():
                     translate(-width/2, -height/2)
                     line(pmouseX, pmouseY, mouseX, mouseY)
     if keyPressed:
-        background(255)
+        if key == 'q': background(255)
+        if key == '0': stroke(0)
+        if key == 'r': stroke(255,0,0)
+        if key == 'g': stroke(0,255,0)
+        if key == 'b': stroke(0,0,255)
 
