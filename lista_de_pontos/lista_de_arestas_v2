@@ -6,7 +6,7 @@
 pontos = set()  # pontos
 arestas = []
 
-tamanho = 60 # tamanho dos 'pontos'
+tamanho = 30 # tamanho dos 'pontos'
 velocidade = 0.2 
 pontos_iniciais = 5
 
