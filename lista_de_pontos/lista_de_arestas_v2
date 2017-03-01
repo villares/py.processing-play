@@ -1,0 +1,151 @@
+""" Alexandre B A Villares - abav.lugaralgum.com
+    Brincando com uma lista de pontos --> github.com/villares
+    Para rodar, instale o Processing Modo Python.
+"""
+#from pontoNaLinha import *  
+pontos = set()  # pontos
+arestas = []
+shiftFlag = False
+tamanho = 30 # tamanho dos 'pontos'
+velocidade = 0.2 
+pontos_iniciais = 5
+
+def setup():
+    size(600, 600)
+    strokeWeight(2)
+    stroke(255)     # traço/linha e branco
+    noFill()       # sem preenchinmento
+    for _ in range(pontos_iniciais):
+        x, y = random(width), random(height)
+        cor = cor_rnd() # sorteia cor
+        pontos.add(Ponto(x, y, cor))  # acrescenta um ponto na lista
+
+def draw():
+    background(128)             # limpa a tela
+    for aresta in arestas:
+        if (aresta.p1 not in pontos) or (aresta.p2 not in pontos):
+            arestas.remove(aresta)
+            print(aresta.p1, aresta.p2)
+        else:
+            aresta.desenha_linha()
+    for ponto in pontos:  # para cada ponto
+        ponto.desenha()
+        ponto.move()
+
+def cor_rnd(alpha_value=128):
+    return color(random(128, 255), random(128, 255), random(128, 255), alpha_value)
+
+def mouseClicked():  # ao soltar do mouse
+    for ponto in pontos:                  # para cada ponto
+        if dist(mouseX, mouseY, ponto.x, ponto.y) < tamanho * 3 / 2:
+            ponto.sel = not ponto.sel
+    mouse = PVector(mouseX, mouseY)
+    for aresta in arestas:                  # para cada ponto
+        if pointInsideLine(mouse, aresta.p1, aresta.p2, 4):
+            aresta.sel = not aresta.sel
+    
+        
+def keyPressed():               # tecla pressionada
+    global shiftFlag
+    if keyCode == SHIFT:
+        shiftFlag = True
+    if key == ' ':
+        pontos.add(Ponto(mouseX, mouseY, cor_rnd()))  # acrescenta poneto na pos. do mouse
+    if key == 'd' and len(pontos) > 1:
+        for ponto in pontos:
+            if ponto.sel and len(pontos) > 1:          # se a lista tiver pelo menos 2 pontos
+                pontos.remove(ponto)  # remove pontos selecionados
+                
+def keyReleased():
+    global shiftFlag
+    if keyCode == SHIFT:
+        shiftFlag = False
+
+
+def mouseDragged():
+    for ponto in pontos:                  # para cada ponto
+        if dist(mouseX, mouseY, ponto.x, ponto.y) < tamanho * 3 / 2:
+            ponto.x, ponto.y = mouseX, mouseY
+
+class Ponto():
+    " pontos num grafo "
+
+    def __init__(self, x, y, cor=color(0)):
+        self.x = x
+        self.y = y
+        self.z = 0 # para compatibilidade com PVector...
+        self.cor = cor
+        self.vx = random(-velocidade, velocidade)
+        self.vy = random(-velocidade, velocidade)
+        self.sel = False
+        self.cria_arestas()
+
+    def desenha(self):
+        fill(self.cor)
+        if self.sel:
+            stroke(0)
+        else:
+            noStroke()
+        ellipse(self.x, self.y, tamanho, tamanho)
+        if dist(mouseX, mouseY, self.x, self.y) < tamanho * 3 / 2:
+            stroke(0)
+            noFill()
+            ellipse(self.x, self.y, tamanho * 3, tamanho * 3)
+            fill(0)
+            text(str(len(pontos))+" "+str(len(arestas)), self.x, self.y)
+        stroke(255)
+
+    def move(self):
+        self.x += self.vx
+        self.y += self.vy
+        if not (0 < self.x < width):
+            self.vx = -self.vx
+        if not (0 < self.y < height):
+            self.vy = -self.vy
+            
+    def cria_arestas(self):
+        for ponto in pontos:
+            nova_aresta = Aresta(ponto, self)
+            arestas.append(nova_aresta)
+
+class Aresta():
+
+    def __init__(self, p1, p2):
+        self.p1 = p1
+        self.p2 = p2
+        self.sel = False
+
+    def desenha_linha(self):
+        x1, y1, x2, y2 = self.p1.x, self.p1.y, self.p2.x, self.p2.y
+        d = dist(x1, y1, x2, y2)
+        if self.sel:
+            stroke(0)
+        else:
+            stroke(255)
+        with pushMatrix():
+            translate(x2, y2)
+            angle = atan2(x1 - x2, y2 - y1)
+            rotate(angle)
+            offset = -tamanho * .6
+            head = 6
+            line(0, offset, 0, -d - offset)
+            line(0, offset, -head / 3, -head + offset)
+            line(0, offset, head / 3, -head + offset)
+      
+                  
+def pointInsideLine(thePoint, theLineEndPoint1, theLineEndPoint2, theTolerance):
+  """" from Andreas Schlegel / http://www.sojamo.de """
+  dir = PVector(theLineEndPoint2.x, theLineEndPoint2.y)
+  dir.sub(theLineEndPoint1)
+  diff = PVector(thePoint.x, thePoint.y)
+  diff.sub(theLineEndPoint1)
+  insideDistance = diff.dot(dir) / dir.dot(dir)
+  if(insideDistance>0 and insideDistance<1):
+     closest = PVector(theLineEndPoint1.x, theLineEndPoint1.y)
+     dir.mult(insideDistance)
+     closest.add(dir)
+     d = PVector(thePoint.x, thePoint.y)
+     d.sub(closest)
+     distsqr = d.dot(d)
+     return (distsqr < pow(theTolerance,2)) 
+  return False
