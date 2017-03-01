@@ -1,7 +1,7 @@
 """
  Code from Andreas Schlegel / http://www.sojamo.de
  posted on https://processing.org/discourse/beta/num_1247920826.html
- ported to Python Mode by Alexandre Villares
+ ported to Python Mode by Alexandre Villares / http://abav.lugaralgum.com
 """
 def setup():
   global p1, p2, mouse
