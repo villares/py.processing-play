@@ -1,8 +1,11 @@
 '''
 Prova de conceito, programa de desenho com simetria radial
 Alexandre B A Villares - http://abav.lugaralgum.com
+
 Para rodar, instale o Processing Python Mode:
 http://abav.lugaralgum.com/como-instalar-o-processing-modo-python/
+
+DOE: http://patreon.com/arteprog
 '''
 
 def setup():
