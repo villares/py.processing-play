@@ -27,15 +27,15 @@ def setup():
 
 def draw():
     background(128)             # limpa a tela
-    for ponto in pontos:  # para cada ponto
-        ponto.desenha()
-        ponto.move()
     for aresta in arestas:
         if (aresta.p1 not in pontos) or (aresta.p2 not in pontos):
             arestas.remove(aresta)
             print(aresta.p1, aresta.p2)
         else:
             aresta.desenha_linha()
+    for ponto in pontos:  # para cada ponto
+        ponto.desenha()
+        ponto.move()
 
 def cor_rnd(alpha_value=128):
     return color(random(128, 255), random(128, 255), random(128, 255), alpha_value)
