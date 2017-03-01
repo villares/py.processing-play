@@ -5,8 +5,8 @@
 
 pontos = set()  # pontos
 arestas = []
-shiftFlag = False
-tamanho = 30 # tamanho dos 'pontos'
+
+tamanho = 60 # tamanho dos 'pontos'
 velocidade = 0.2 
 pontos_iniciais = 5
 
@@ -35,35 +35,28 @@ def draw():
 def cor_rnd(alpha_value=128):
     return color(random(128, 255), random(128, 255), random(128, 255), alpha_value)
 
-def mouseClicked():  # ao soltar do mouse
-    for ponto in pontos:                  # para cada ponto
+def mouseClicked():  # clique do mouse seleciona/deseleciona pontos ou arestas
+    for ponto in pontos:   # para cada ponto
         if dist(mouseX, mouseY, ponto.x, ponto.y) < tamanho * 3 / 2:
             ponto.sel = not ponto.sel
     mouse = PVector(mouseX, mouseY)
-    for aresta in arestas:                  # para cada ponto
+    for aresta in arestas:    # para cada aresta
         if pointInsideLine(mouse, aresta.p1, aresta.p2, 4):
             aresta.sel = not aresta.sel
     
         
 def keyPressed():               # tecla pressionada
-    global shiftFlag
-    if keyCode == SHIFT:
-        shiftFlag = True
+    # barra de espaço acrescenta pontos
     if key == ' ':
-        pontos.add(Ponto(mouseX, mouseY, cor_rnd()))  # acrescenta poneto na pos. do mouse
+        pontos.add(Ponto(mouseX, mouseY, cor_rnd()))  # acrescenta ponto na pos. do mouse
+    # 'd' remove os pontos selecionandos (com clique, marcados em preto)
     if key == 'd' and len(pontos) > 1:
         for ponto in pontos:
-            if ponto.sel and len(pontos) > 1:          # se a lista tiver pelo menos 2 pontos
-                pontos.remove(ponto)  # remove pontos selecionados
+            if ponto.sel and len(pontos) > 1:  # se a lista tiver pelo menos 2 pontos
+                pontos.remove(ponto)           # remove pontos selecionados
                 
-def keyReleased():
-    global shiftFlag
-    if keyCode == SHIFT:
-        shiftFlag = False
-
-
 def mouseDragged():
-    for ponto in pontos:                  # para cada ponto
+    for ponto in pontos:   # para cada ponto
         if dist(mouseX, mouseY, ponto.x, ponto.y) < tamanho * 3 / 2:
             ponto.x, ponto.y = mouseX, mouseY
 
