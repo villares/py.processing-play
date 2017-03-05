@@ -5,48 +5,40 @@
     no Garoa Hacker Clube - http://garoa.net.br
     e publicado em https://github.com/villares/py.processing-play
 """
-import random as rnd
-
+import random as rnd  # para não conflitar com o random do Processing
 pontos = set()  # conjunto de Pontos
 arestas = []    # lista de Arestas
 
-# tamanho dos Pontos (influi no 'mouse over' e offset das setas)
-tamanho = 50
-barra = 100
-velocidade = 1  # para sorteio de velocidades iniciais random(+v,-v)
-velocidade_maxima = 1 
-pontos_iniciais = 5
+TAM_PONTO = 50  # TAM_PONTO dos Pontos \
+TAM_BARRA = 100
+VEL_MAX = 2  # velocidade máxima nas ortogonais vx e vy
+PONTOS_INI = 5  # númer inicial de pontos
 
 def setup():
     size(600, 600)
-    strokeWeight(2)
-    for _ in range(pontos_iniciais):
+    strokeWeight(3)
+    for _ in range(PONTOS_INI):
         x, y = random(width), random(height)
-        cor = cor_rnd()  # sorteia uma cor
-        pontos.add(Ponto(x, y, cor))  # acrescenta um Ponto
+        pontos.add(Ponto(x, y))  # acrescenta um Ponto
 
 def draw():
     background(128)        # limpa a tela
+    # para cada ponto
+    for ponto in pontos:
+        ponto.desenha()  # desenha
+        ponto.move()    # atualiza posição
+    # para cada aresta
     for aresta in arestas:  # checa se há Arestas com Pontos já removidos
         if (aresta.p1 not in pontos) or (aresta.p2 not in pontos):
             arestas.remove(aresta)   # nesse caso remove a Aresta também
-            # print(aresta.p1, aresta.p2)
         else:                # senão
-            aresta.desenha()  # desenha a Aresta com uma seta!
-            aresta.puxa_empurra()
-    for ponto in pontos:  # cada Ponto desenha e atualiza sua posição
-        ponto.desenha()
-        ponto.move()
-        ponto.vx = limitar(ponto.vx, velocidade_maxima)
-        ponto.vy = limitar(ponto.vy, velocidade_maxima)
-
-def cor_rnd(alpha_value=128):       # helper para sortear uma cor
-    return color(random(128, 255), random(128, 255), random(128, 255), alpha_value)
+            aresta.desenha()  # desenha a linha
+            aresta.puxa_empurra()  # altera a velocidade dos pontos
 
 # Sob clique do mouse seleciona/deseleciona Pontos ou Arestas
 def mouseClicked():
     for ponto in pontos:   # para cada Ponto checa distância do mouse
-        if dist(mouseX, mouseY, ponto.x, ponto.y) < tamanho * 3 / 2:
+        if dist(mouseX, mouseY, ponto.x, ponto.y) < TAM_PONTO / 2:
             ponto.sel = not ponto.sel  # inverte status de seleção
     mouse = PVector(mouseX, mouseY)
     for aresta in arestas:    # para cada Aresta checa o 'mouse over'
@@ -55,9 +47,9 @@ def mouseClicked():
 
 
 def keyPressed():   # Quando uma tecla é pressionada
-    # barra de espaço acrescenta Pontos na posição atual do mouse
+    # Barra de espaço acrescenta Pontos na posição atual do mouse
     if key == ' ':
-        pontos.add(Ponto(mouseX, mouseY, cor_rnd()))  # acrescenta Ponto no set
+        pontos.add(Ponto(mouseX, mouseY))  # acrescenta Ponto no set
     # 'd' remove os Pontos previamente selecionandos com clique, marcados em preto.
     if key == 'd':
         for ponto in pontos:
@@ -70,7 +62,7 @@ def keyPressed():   # Quando uma tecla é pressionada
 
 def mouseDragged():        # quando o mouse é arrastado
     for ponto in pontos:   # para cada Ponto checa distância do mouse
-        if dist(mouseX, mouseY, ponto.x, ponto.y) < tamanho * 3 / 2:
+        if dist(mouseX, mouseY, ponto.x, ponto.y) < TAM_PONTO / 2:
             # move o Ponto para posição do mouse
             ponto.x, ponto.y = mouseX, mouseY
             ponto.vx = 0
@@ -78,30 +70,34 @@ def mouseDragged():        # quando o mouse é arrastado
 
 class Ponto():
 
-    " Pontos num grafo, velocidade inicial sorteada, criam Arestas com outros Pontos "
+    " Pontos num grafo, VEL_MAX inicial sorteada, criam Arestas com outros Pontos "
 
     def __init__(self, x, y, cor=color(0)):
         self.x = x
         self.y = y
         self.z = 0  # para compatibilidade com PVector...
-        self.cor = cor
-        self.vx = random(-velocidade, velocidade)
-        self.vy = random(-velocidade, velocidade)
-        self.sel = False   # se está selecionado
+        self.vx = random(-VEL_MAX, VEL_MAX)
+        self.vy = random(-VEL_MAX, VEL_MAX)
+        self.sel = False   # se está selecionado, começa sem seleção
+        self.cor = color(random(128, 255),  # R
+                         random(128, 255),  # G
+                         random(128, 255),  # B
+                         128)              # Alpha ~50%
         self.cria_arestas()
 
     def desenha(self):
-        fill(self.cor)
         if self.sel:
             stroke(0)
         else:
             noStroke()
-        ellipse(self.x, self.y, tamanho, tamanho)
-        if dist(mouseX, mouseY, self.x, self.y) < tamanho:
+        fill(self.cor)
+        ellipse(self.x, self.y, TAM_PONTO, TAM_PONTO)
+        if dist(mouseX, mouseY, self.x, self.y) < TAM_PONTO:
             stroke(255)
+            noFill()
+            ellipse(self.x, self.y, TAM_PONTO + 5, TAM_PONTO + 5)
+            # fill(0)
             # text(str(len(pontos)) + " " + str(len(arestas)), self.x, self.y)
-            ellipse(self.x, self.y, tamanho+5, tamanho+5)
-
 
     def move(self):
         self.x += self.vx
@@ -110,10 +106,8 @@ class Ponto():
             self.vx = -self.vx
         if not (0 < self.y < height):
             self.vy = -self.vy
-        # self.p1.vx = limitar(self.p1.vx, 3)
-        # self.p1.vy = limitar(self.p1.vy, 3)
-        # self.p2.vx = limitar(self.p2.vx, 3)
-        # self.p2.vy = limitar(self.p2.vy, 3)
+        self.vx = self.limitar(self.vx, VEL_MAX)
+        self.vy = self.limitar(self.vy, VEL_MAX)
 
     def cria_arestas(self, modo='random'):
         if modo == 'random':
@@ -122,9 +116,17 @@ class Ponto():
                 nova_aresta = Aresta(rnd.choice(lista_pontos), self)
                 arestas.append(nova_aresta)
         elif modo == 'all':
-             for ponto in pontos:
+            for ponto in pontos:
                 nova_aresta = Aresta(ponto, self)
                 arestas.append(nova_aresta)
+
+    def limitar(self, v, v_max):
+        if v > v_max:
+            return v_max
+        elif v < -v_max:
+            return -v_max
+        else:
+            return v
 
 class Aresta():
 
@@ -141,10 +143,14 @@ class Aresta():
         else:
             stroke(255)
         line(self.p1.x, self.p1.y, self.p2.x, self.p2.y)
+        noStroke()
+        fill(255)
+        ellipse(self.p1.x, self.p1.y, TAM_PONTO / 6, TAM_PONTO / 6)
+        ellipse(self.p2.x, self.p2.y, TAM_PONTO / 6, TAM_PONTO / 6)
 
     def puxa_empurra(self):
         d = dist(self.p1.x, self.p1.y, self.p2.x, self.p2.y)
-        delta = barra - d
+        delta = TAM_BARRA - d
         dir = PVector.sub(self.p1, self.p2)
         dir.mult(delta / 1000)
         self.p1.vx = self.p1.vx + dir.x
@@ -152,14 +158,6 @@ class Aresta():
         self.p2.vx = self.p2.vx - dir.x
         self.p2.vy = self.p2.vy - dir.y
 
-
-def limitar(v, v_max):
-    if v > v_max:
-        return v_max
-    elif v < -v_max:
-        return -v_max
-    else:
-        return v
 
 def pointInsideLine(thePoint, theLineEndPoint1, theLineEndPoint2, theTolerance):
     # from Andreas Schlegel / http://www.sojamo.de """
