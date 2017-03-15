@@ -1,6 +1,10 @@
-# from the Processing IDE's menu: Sketch > Import Library... > Add Library.. > [search for PeasyCam & install]
-# then Import Library... > PeasyCam
-
+""" Exemplo de uso da Biblioteca PeasyCam 
+    No menu do IDE Processing: Sketch > Import Library... > Add Library.. > [search for PeasyCam & install]
+    depois Import Library... > PeasyCam
+    - Clique e arraste o mouse (mouseDragged) para orbitar
+    - Scroll Wheel = Zoom
+    - Command = Translate
+"""
 add_library('peasycam')
 
 def setup():
