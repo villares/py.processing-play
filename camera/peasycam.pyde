@@ -1,4 +1,5 @@
-""" Exemplo de uso da Biblioteca PeasyCam - documentaço em http://mrfeinberg.com/peasycam/
+""" Exemplo de uso da Biblioteca PeasyCam
+    * documentação em http://mrfeinberg.com/peasycam/
     No menu do IDE Processing: Sketch > Import Library... > Add Library.. > [search for PeasyCam & install]
     depois Import Library... > PeasyCam
     - Clique e arraste o mouse (mouseDragged) para orbitar
@@ -27,6 +28,6 @@ def draw():
     camera.beginHUD() # para desenhar relativo ao ponto de vista da câmera
     fill(255)
     rect(30,30,30,30)
-    camera.endHUD()  # sempre!
+    camera.endHUD()  # se usou .beginHUD() no esqueça de .endHUD() sempre!
 
         
