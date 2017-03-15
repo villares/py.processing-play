@@ -4,7 +4,7 @@
 add_library('peasycam')
 
 def setup():
-    size(200, 200, P3D)
+    size(200, 200, P3D)       # note o setup do canvas 3D
     cam = PeasyCam(this, 100)
     cam.setMinimumDistance(50)
     cam.setMaximumDistance(500)
