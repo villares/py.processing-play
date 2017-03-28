@@ -10,7 +10,7 @@ If you know Processing (Java), or Python, read this: http://py.processing.org/tu
 Para executar, baixe o IDE do Processing e instale o modo Python!<br>
 Passo a passo: https://abav.lugaralgum.com/como-instalar-o-processing-modo-python/<br>
 Se você vem do Processing (Java), ou do Python, leia isto:<br>
-https://github.com/arteprog/Processando-Processing/blob/master/tutoriais/py.processing-Python_Jython_e_Java.md
+https://github.com/arteprog/Processando-Processing/blob/master/tutoriais-PT/python-Python_Jython_e_Java.md
 
 ### Acha útil este material? Faça uma pequena doação em http://patreon.com/arteprog
 
