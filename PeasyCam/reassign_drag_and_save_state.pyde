@@ -2,9 +2,9 @@
     * documentação em http://mrfeinberg.com/peasycam/
     No menu do IDE Processing: Sketch > Import Library... > Add Library.. > [search for PeasyCam & install]
     depois Import Library... > PeasyCam
-    Este exemplo mostra como realocar o arraste do mouse e do botão da direita
+    Este exemplo mostra como realocar o clique-arraste da rodinha e do botão da direita
     - Clique e arraste o botão central (rodinha) para orbitar
-    - Botão da direita = Pan/Translate
+    - Clique e arraste o botão da direita = Pan/Translate
     - Rodinha/mouse wheel = Zoom
     - Tecla R - reset da câmera
     - Tecla S - salva um estado
