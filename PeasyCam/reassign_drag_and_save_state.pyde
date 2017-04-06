@@ -21,11 +21,11 @@ def setup():
     cam.setMinimumDistance(50)
     cam.setMaximumDistance(500)
     # Reassign some drag handlers    
-    orbitDH = cam.getRotateDragHandler()  # get the rotate Handler
-    cam.setCenterDragHandler(orbitDH)     # set it to the Center/Wheel click/drag
-    panDH = cam.getPanDragHandler()       # get the rotate Handler
-    cam.setRightDragHandler(panDH)        # set left-button mouse drag
-    cam.setLeftDragHandler(None)          # disable the right-drag
+    orbitDH = cam.getRotateDragHandler()  # pega o RotateDragHandler
+    cam.setCenterDragHandler(orbitDH)     # define como ação do botão centra/rodinha
+    panDH = cam.getPanDragHandler()       # pega PanDragHandler
+    cam.setRightDragHandler(panDH)        # define como ação do botão da direita
+    cam.setLeftDragHandler(None)          # nenhum Handler para o botão da esquerda
 
 def draw():
     background(0)
