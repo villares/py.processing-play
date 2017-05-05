@@ -65,7 +65,7 @@ def bola_move():
             velY = -velY            # inverta a velocidade vertical
                     
 def bola_desenha():
-    fill ( 255,0,0)
+    fill (255, 0, 0)  # vermelho
     ellipse(bolaX, bolaY, DIA_BOLA, DIA_BOLA)           
 
 def jogadores_move():
@@ -76,17 +76,17 @@ def jogadores_move():
     if desce_2: j2Y = j2Y + VEL_JOGADOR
                 
 def jogadores_desenha():
-    fill(0,0,255)
+    fill(0,0,255)  # azul
     rect (0, j1Y - MEIO_JOGADOR,
            ESP_JOGADOR, MEIO_JOGADOR*2)
     rect (width - ESP_JOGADOR, j2Y - MEIO_JOGADOR,
            ESP_JOGADOR, MEIO_JOGADOR*2)   
 
-def prepara_jogo():     # começa ou recomeça um jogo
+def prepara_jogo():  # começa ou recomeça um jogo
     global game_over
     global bolaX, bolaY, velX, velY
     global sobe_1, desce_1, sobe_2, desce_2
-    global j1Y, j2Y #, j1_points, j2_points
+    global j1Y, j2Y  #, j1_points, j2_points
     bolaX, bolaY = width/2, height/2
     velX = (-VEL_INICIAL, VEL_INICIAL)[int(random(2))]
     velY = (-VEL_INICIAL, VEL_INICIAL)[int(random(2))]
