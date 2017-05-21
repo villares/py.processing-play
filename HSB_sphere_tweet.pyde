@@ -1,6 +1,8 @@
 """
-Ported from code by aBe @hamoid https://twitter.com/hamoid/status/865931219132960769
-by Alexandre Villares https://twitter.com/villares https://github.com/villares
+Sketch by aBe @hamoid https://twitter.com/hamoid/status/865931219132960769
+Ported by Alexandre Villares https://twitter.com/villares https://github.com/villares
+
+To run this, download Processing and install Processing Python Mode http://py.processing.org
 """
 
 from itertools import count, takewhile
