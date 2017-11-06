@@ -7,10 +7,13 @@ May require 'sudo chmod 666 /dev/ttyUSB0' (YMMV).
 # ARDUINO
 add_library('serial')  # import processing.serial.*;
 add_library('arduino')  # import cc.arduino.*;
+
+for num, port in enumerate(Arduino.list()):  # Serial ports
+    println(str(num)+":"+port)               # on console
+SERIAL = 0  # Please change if needed!
+
 POT_1 = 5   # Pin number for 1st Pot
 POT_2 = 0   # Pin number for 2nd Pot
-SERIAL = 32  # CHANGE, use println((Arduino.list())) to find out
-
 
 def setup():
     colorMode(HSB)  # Not using RGB mode this time ;)
