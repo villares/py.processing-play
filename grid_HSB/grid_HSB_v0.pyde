@@ -1,5 +1,5 @@
-CEL_SIZE, HALF_CEL = 50, 25
-ANG, ANG_INCREMENT = 0, 0.0015
+""" CEL_SIZE, HALF_CEL = 50, 25
+ANG = 0
 
 def setup():
     global ROWS, COLS  # filas e colunas
@@ -22,12 +22,13 @@ def draw():
                     rotate(ANG / 3)
                 else:
                     rotate(ANG / 2)
-                fill(((ANG * r + 1) + (ANG * c + 1)) % 255,
+                fill((ANG * (r + 1) * (c + 1)) % 255,
                      255, 255, 128)
                 rect(0, 0, 100 * sin(ANG / 5),
-                     100 * cos(ANG / 5))
-                ANG += ANG_INCREMENT
+                           100 * cos(ANG / 5))
+                ANG += 0.0015
 
     if frameCount < 1000:
         print frameCount
         # saveFrame("###.png")
+         """
