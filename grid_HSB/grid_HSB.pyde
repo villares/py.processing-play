@@ -30,4 +30,4 @@ def draw():
 
     if frameCount < 1000:
         print frameCount
-        # saveFrame("###.png")
+        saveFrame("export/###.png")
