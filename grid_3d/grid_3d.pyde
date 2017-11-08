@@ -8,11 +8,11 @@ A funny wobbling 3D grid - by Alexandre B A Villares (abav.lugaralgum.com)
 add_library('peasycam')  # Drag the mouse to orbit!
 
 ANG = 0
-B_SIZE = 5    # B_SIZE < box size < B_SIZE * 2
-SQ_NUM = 5    # (SQ_NUM * 2 - 1) ** 3 is the number of boxes
-SQ_SIZE = 10  # Controls the maximum size of the grid
-SLIDE = 5     # Changes the sliding behavior
-SPEED = 0.01  # Increments ANG
+B_SIZE = 5   # B_SIZE <= box_size < B_SIZE * 2
+B_RANGE = 5  # number_of_boxes = (B_RANGE * 2 - 1) ** 3
+S_SIZE = 10  # Controls the spacing of the grid
+SLIDE = 5    # Changes the sliding behaviour
+SPEED = 0.01 # Increments ANG
 
 def setup():
     global cam, colors_and_sizes
@@ -31,15 +31,15 @@ def draw():
 def my_grid(L=None):
     new_L = []
     c = 0
-    for i in range(-SQ_NUM, SQ_NUM):
-        for j in range(-SQ_NUM, SQ_NUM):
-            for k in range(-SQ_NUM, SQ_NUM):
+    for i in range(-B_RANGE, B_RANGE):
+        for j in range(-B_RANGE, B_RANGE):
+            for k in range(-B_RANGE, B_RANGE):
                 if L:
                     box_color, box_size = L[c]
                     fill(box_color)
-                    my_box(i * SQ_SIZE * sin(ANG + i * SLIDE),
-                           j * SQ_SIZE * sin(ANG + j * SLIDE),
-                           k * SQ_SIZE * sin(ANG + k * SLIDE),
+                    my_box(i * S_SIZE * sin(ANG + i * SLIDE),
+                           j * S_SIZE * sin(ANG + j * SLIDE),
+                           k * S_SIZE * sin(ANG + k * SLIDE),
                            box_size)
                 else:
                     r, g, b = 150 + i * 20, 150 + j * 20, 150 + k * 20
