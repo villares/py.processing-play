@@ -8,29 +8,28 @@ A funny wobbling 3D grid - by Alexandre B A Villares (abav.lugaralgum.com)
 add_library('peasycam')  # Drag the mouse to orbit!
 
 ANG = 0
-B_SIZE = 5   # B_SIZE <= box_size < B_SIZE * 2
 HALF_RANGE = 5  
 NUM_BOXES = (HALF_RANGE * 2) ** 3
-colors_and_sizes = [()] * NUM_BOXES
+BOXES = [()] * NUM_BOXES
 S_SIZE = 10  # Controls the spacing of the grid
+B_SIZE = 5   # B_SIZE <= box_size < B_SIZE * 2
 SLIDE = 5    # Changes the sliding behaviour
-SPEED = 0.01  # Increments ANG
+SPEED = 0.01 # Increments ANG
 
 def setup():
-    global cam
     size(600, 600, P3D)
     cam = PeasyCam(this, 200)
     cam.setMinimumDistance(200)
     cam.setMaximumDistance(200)
-    my_grid(set_boxes, colors_and_sizes)
+    on_grid(set_boxes, BOXES)
 
 def draw():
     global ANG
     background(0)
-    my_grid(plot_boxes, colors_and_sizes)
+    on_grid(plot_boxes, BOXES)
     ANG += SPEED
 
-def my_grid(func, L):
+def on_grid(func, L):
     n = 0
     for i in range(-HALF_RANGE, HALF_RANGE):
         for j in range(-HALF_RANGE, HALF_RANGE):
@@ -49,5 +48,5 @@ def plot_boxes(x, y, z, n, L):
     with pushMatrix():
         translate(x * S_SIZE * sin(ANG + x * SLIDE),
                   y * S_SIZE * sin(ANG + y * SLIDE),
-                  z * S_SIZE * sin(ANG + z * SLIDE),)
+                  z * S_SIZE * sin(ANG + z * SLIDE))
         box(box_size)
