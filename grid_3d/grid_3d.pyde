@@ -9,46 +9,45 @@ add_library('peasycam')  # Drag the mouse to orbit!
 
 ANG = 0
 B_SIZE = 5   # B_SIZE <= box_size < B_SIZE * 2
-B_RANGE = 5  # number_of_boxes = (B_RANGE * 2 - 1) ** 3
+HALF_RANGE = 5  
+NUM_BOXES = (HALF_RANGE * 2) ** 3
+colors_and_sizes = [()] * NUM_BOXES
 S_SIZE = 10  # Controls the spacing of the grid
 SLIDE = 5    # Changes the sliding behaviour
-SPEED = 0.01 # Increments ANG
+SPEED = 0.01  # Increments ANG
 
 def setup():
-    global cam, colors_and_sizes
+    global cam
     size(600, 600, P3D)
     cam = PeasyCam(this, 200)
     cam.setMinimumDistance(200)
     cam.setMaximumDistance(200)
-    colors_and_sizes = my_grid()
+    my_grid(set_boxes, colors_and_sizes)
 
 def draw():
     global ANG
     background(0)
-    my_grid(colors_and_sizes)
+    my_grid(plot_boxes, colors_and_sizes)
     ANG += SPEED
 
-def my_grid(L=None):
-    new_L = []
-    c = 0
-    for i in range(-B_RANGE, B_RANGE):
-        for j in range(-B_RANGE, B_RANGE):
-            for k in range(-B_RANGE, B_RANGE):
-                if L:
-                    box_color, box_size = L[c]
-                    fill(box_color)
-                    my_box(i * S_SIZE * sin(ANG + i * SLIDE),
-                           j * S_SIZE * sin(ANG + j * SLIDE),
-                           k * S_SIZE * sin(ANG + k * SLIDE),
-                           box_size)
-                else:
-                    r, g, b = 150 + i * 20, 150 + j * 20, 150 + k * 20
-                    box_size = B_SIZE + random(B_SIZE)
-                    new_L.append((color(r, g, b), box_size))
-                c += 1
-    return new_L
+def my_grid(func, L):
+    n = 0
+    for i in range(-HALF_RANGE, HALF_RANGE):
+        for j in range(-HALF_RANGE, HALF_RANGE):
+            for k in range(-HALF_RANGE, HALF_RANGE):
+                func(i, j, k, n, L)
+                n += 1
 
-def my_box(x, y, z, s):
+def set_boxes(x, y, z, n, L):
+    r, g, b = 150 + x * 20, 150 + y * 20, 150 + z * 20
+    box_size = random(B_SIZE, B_SIZE * 2)
+    L[n] = (color(r, g, b), box_size)
+
+def plot_boxes(x, y, z, n, L):
+    box_color, box_size = L[n]
+    fill(box_color)
     with pushMatrix():
-        translate(x, y, z)
-        box(s)
+        translate(x * S_SIZE * sin(ANG + x * SLIDE),
+                  y * S_SIZE * sin(ANG + y * SLIDE),
+                  z * S_SIZE * sin(ANG + z * SLIDE),)
+        box(box_size)
