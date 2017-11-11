@@ -8,10 +8,10 @@ A funny wobbling 3D grid - by Alexandre B A Villares (abav.lugaralgum.com)
 add_library('peasycam')  # Drag the mouse to orbit!
 
 ANG = 0
-RANGE = 10
-NUM_BOXES = RANGE ** 3
+HALF_RANGE = 5  
+NUM_BOXES = (HALF_RANGE * 2) ** 3
 BOXES = [()] * NUM_BOXES
-S_SIZE = 5  # Controls the spacing of the grid
+S_SIZE = 10  # Controls the spacing of the grid
 B_SIZE = 5   # B_SIZE <= box_size < B_SIZE * 2
 SLIDE = 5    # Changes the sliding behaviour
 SPEED = 0.01 # Increments ANG
@@ -31,14 +31,14 @@ def draw():
 
 def on_grid(func, L):
     n = 0
-    for i in range(RANGE):
-        for j in range(RANGE):
-            for k in range(RANGE):
+    for i in range(-HALF_RANGE, HALF_RANGE):
+        for j in range(-HALF_RANGE, HALF_RANGE):
+            for k in range(-HALF_RANGE, HALF_RANGE):
                 func(i, j, k, n, L)
                 n += 1
 
 def set_boxes(x, y, z, n, L):
-    r, g, b = map(x, 0, RANGE, 1, 255), map(y, 0, RANGE, 1, 255), map(z, 0, RANGE, 1, 255)
+    r, g, b = 150 + x * 20, 150 + y * 20, 150 + z * 20
     box_size = random(B_SIZE, B_SIZE * 2)
     L[n] = (color(r, g, b), box_size)
 
@@ -48,6 +48,5 @@ def plot_boxes(x, y, z, n, L):
     with pushMatrix():
         translate(x * S_SIZE * sin(ANG + x * SLIDE),
                   y * S_SIZE * sin(ANG + y * SLIDE),
-                  z * S_SIZE * sin(ANG + z * SLIDE)
-                  )
+                  z * S_SIZE * sin(ANG + z * SLIDE))
         box(box_size)
