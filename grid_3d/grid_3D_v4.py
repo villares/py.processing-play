@@ -8,7 +8,7 @@ add_library('pdf')
 add_library('peasycam')  # Drag the mouse to orbit!
 
 ANG = 0
-RANGE = 8
+RANGE = 10
 NUM_BOXES = RANGE ** 3
 BOXES = [()] * NUM_BOXES
 S_SIZE = 5  # Controls the spacing of the grid
@@ -21,11 +21,10 @@ def setup():
     #hint(ENABLE_DEPTH_SORT) 
     #fullScreen(1)
     size(600, 600, P3D)
-    cam = PeasyCam(this, 110)
-    cam.setMinimumDistance(110)
-    cam.setMaximumDistance(110)
+    cam = PeasyCam(this, 80)
+    cam.setMinimumDistance(80)
+    cam.setMaximumDistance(80)
     on_grid(set_boxes, BOXES)
-    strokeWeight(2)
 
 
 def draw():
@@ -55,12 +54,12 @@ def on_grid(func, L):
                 func(i, j, k, n, L)
                 n += 1
 
+
 def set_boxes(x, y, z, n, L):
-    r = map(x, 0, RANGE, 1, 255)
-    g = map(y, 0, RANGE, 1, 255)
-    b = map(z, 0, RANGE, 1, 255)
+    r, g, b = map(x, 0, RANGE, 1, 255), map(y, 0, RANGE, 1, 255), map(z, 0, RANGE, 1, 255)
     box_size = random(B_SIZE, B_SIZE * 2)
     L[n] = (color(r, g, b), box_size)
+
 
 def plot_boxes(x, y, z, n, L):
     box_color, box_size = L[n]

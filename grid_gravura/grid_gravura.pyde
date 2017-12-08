@@ -8,10 +8,10 @@ add_library('pdf')
 add_library('peasycam')  # Drag the mouse to orbit!
 
 ANG = 0
-RANGE = 8
+RANGE = 3
 NUM_BOXES = RANGE ** 3
 BOXES = [()] * NUM_BOXES
-S_SIZE = 5  # Controls the spacing of the grid
+S_SIZE = 10  # Controls the spacing of the grid
 B_SIZE = 5   # B_SIZE <= box_size < B_SIZE * 2
 SLIDE = 5    # Changes the sliding behaviour
 SPEED = 0.01 # Increments ANG
@@ -37,15 +37,15 @@ def draw():
     background(0)
     on_grid(plot_boxes, BOXES)
 
-    if 1: #mousePressed:
+    if keyPressed:
         ANG += SPEED
 
     if SAVE_FRAME:
         endRaw()
         SAVE_FRAME = False  
     if frameCount % 5 and frameCount < 500:
-        saveFrame("f###.tga")
-
+        # saveFrame("f###.tga")
+        pass
 
 def on_grid(func, L):
     n = 0
@@ -66,7 +66,7 @@ def plot_boxes(x, y, z, n, L):
     box_color, box_size = L[n]
     noFill()
     #noStroke()    
-    stroke(box_color)
+    stroke(255)
     with pushMatrix():
         translate(x * S_SIZE * sin(ANG + x * SLIDE),
                   y * S_SIZE * sin(ANG + y * SLIDE),
@@ -77,4 +77,5 @@ def plot_boxes(x, y, z, n, L):
 
 def keyPressed():
     global SAVE_FRAME
-    SAVE_FRAME = True
+    if key == "s":
+        SAVE_FRAME = True
