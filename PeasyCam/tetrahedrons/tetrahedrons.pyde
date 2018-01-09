@@ -9,8 +9,8 @@ Z_MIN, Z_MAX = -300, 300
 
 def setup():
     cam = PeasyCam(this, 500) # Drag mouse to orbit, scroll to zoom
-    cam.setMaximumDistance(250);
-    cam.setMaximumDistance(1000);
+    #cam.setMaximumDistance(250);
+    #cam.setMaximumDistance(1000);
     # hint(DISABLE_DEPTH_TEST)
     size(800, 800, P3D)
     for _ in range(100):
@@ -36,13 +36,13 @@ class Tetrahedron():
     def __init__(self, x, y, z, radius):
         self.x, self.y, self.z = x, y, z
         self.radius = radius
-        self.points = [PVector()] * 4
+        self.points = []
         # calculate geometry
         a = radius * 2 / 3.
-        self.points[0] = PVector(+a, +a, +a)  # vertex 1
-        self.points[1] = PVector(-a, -a, +a)  # vertex 2
-        self.points[2] = PVector(-a, +a, -a)  # vertex 3
-        self.points[3] = PVector(+a, -a, -a)  # vertex 4
+        self.points.append(PVector(+a, +a, +a))  # vertex 1
+        self.points.append(PVector(-a, -a, +a))  # vertex 2
+        self.points.append(PVector(-a, +a, -a))  # vertex 3
+        self.points.append(PVector(+a, -a, -a))  # vertex 4
 
     # draws tetrahedron
     def plot(self, rx=0, ry=0, showFaces=False):
