@@ -6,7 +6,7 @@ Inspired by example by Art Simon https://github.com/APCSPrinciples/AnimatedGIF/
 """
 
 add_library('gifAnimation')
-from gifAnimation_helper import *
+from gif_exporter import gif_export
 
 diameter = 1
 def setup():
@@ -18,5 +18,5 @@ def draw():
     ellipse(50,50,diameter,diameter)
     diameter = diameter + 1
     print(frameCount)
-    gifExport(GifMaker, frames=250)
+    gif_export(GifMaker, frames=250)
 
