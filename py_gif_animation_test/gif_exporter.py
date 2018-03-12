@@ -1,4 +1,4 @@
-def gifExport(GifMaker, filename="exported", frames=0, repeat=0, quality=255, delay=17):
+def gif_export(GifMaker, filename="exported", frames=0, repeat=0, quality=255, delay=17):
     """
     Be careful! frames=0 will stop the sketch on keyPressed or frameCount >= 100000... 
     """
