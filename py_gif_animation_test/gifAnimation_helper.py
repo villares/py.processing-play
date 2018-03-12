@@ -6,7 +6,7 @@ def gifExport(GifMaker, filename="exported", frames=0, repeat=0, quality=255, de
         global gifExporter
         gifExporter = GifMaker(this, filename + ".gif")
         gifExporter.setRepeat(repeat)  # 0 makes it an "endless" animation
-        gifExporter.setQuality(255)  # quality range 0 - 255
+        gifExporter.setQuality(quality)  # quality range 0 - 255
         gifExporter.setDelay(delay)
     gifExporter.addFrame()
         
