@@ -13,12 +13,12 @@ def gif_export(GifMaker,             # gets a reference to the library
                filename="exported",  # .gif will be added
                repeat=0,             # 0 makes it an "endless" animation
                quality=255,          # quality range 0 - 255
-               delay=170,            # this is quick
+               delay=200,            # this is quick
                frames=0):            # 0 will stop on keyPressed or frameCount >= 100000
+    global gifExporter
     try:
         gifExporter
     except NameError:
-        global gifExporter
         gifExporter = GifMaker(this, filename + ".gif")
         gifExporter.setRepeat(repeat)
         gifExporter.setQuality(quality)
