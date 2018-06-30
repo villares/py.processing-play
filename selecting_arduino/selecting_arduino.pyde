@@ -3,14 +3,14 @@ from __future__ import unicode_literals
 add_library('serial')  # import processing.serial.*;
 add_library('arduino')  # import cc.arduino.*;
 
-lista_portas = [str(num) + ": " + porta_serial for num, porta_serial
+port_list = [str(num) + ": " + porta_serial for num, porta_serial
                 in enumerate(Arduino.list())]
 
 def setup():
     size(400, 300, P2D)
-    println(option_pane("Sua lousa está conectada?",
-                        "indique em qual porta:",
-                        lista_portas,
+    println(option_pane("Is your Arduino board connected?",
+                        "Select the USB port:",
+                        port_list,
                         -1)
             )
 
