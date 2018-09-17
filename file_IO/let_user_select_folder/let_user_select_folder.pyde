@@ -8,8 +8,9 @@ def folderSelected(selection):
     if selection == None:
         print("Window was closed or the user hit cancel.")
     else:
-        print("User selected " + selection.getAbsolutePath())
-        mypath = dataPath("").getAbsolutePath()
-        for f in listdir(mypath):
-            if isfile(join(mypath, f)):
+        path = selection.getAbsolutePath()
+        print("User selected " + path)
+        print("-----------------------------------------")
+        for f in listdir(path):
+            if isfile(join(path, f)):
                 print(f)
