@@ -7,7 +7,7 @@ A funny wobbling 3D grid - by Alexandre B A Villares (abav.lugaralgum.com)
 add_library('pdf')
 add_library('peasycam')  # Drag the mouse to orbit!
 
-ANG = 0
+angle = 0
 RANGE = 3
 NUM_BOXES = RANGE ** 3
 BOXES = [()] * NUM_BOXES
@@ -15,7 +15,7 @@ S_SIZE = 10  # Controls the spacing of the grid
 B_SIZE = 5   # B_SIZE <= box_size < B_SIZE * 2
 SLIDE = 5    # Changes the sliding behaviour
 SPEED = 0.01 # Increments ANG
-SAVE_FRAME = False
+save_frame = False
 
 def setup():
     #hint(ENABLE_DEPTH_SORT) 
@@ -29,20 +29,20 @@ def setup():
 
 
 def draw():
-    global ANG, SAVE_FRAME
+    global angle, save_frame
 
-    if SAVE_FRAME:
+    if save_frame:
         pdf = beginRaw(PDF, "pdf_complex_out2.pdf")
         
     background(0)
     on_grid(plot_boxes, BOXES)
 
     if keyPressed:
-        ANG += SPEED
+        angle += SPEED
 
-    if SAVE_FRAME:
+    if save_frame:
         endRaw()
-        SAVE_FRAME = False  
+        save_frame = False  
     if frameCount % 5 and frameCount < 500:
         # saveFrame("f###.tga")
         pass
@@ -68,14 +68,14 @@ def plot_boxes(x, y, z, n, L):
     #noStroke()    
     stroke(255)
     with pushMatrix():
-        translate(x * S_SIZE * sin(ANG + x * SLIDE),
-                  y * S_SIZE * sin(ANG + y * SLIDE),
-                  z * S_SIZE * sin(ANG + z * SLIDE)
+        translate(x * S_SIZE * sin(angle + x * SLIDE),
+                  y * S_SIZE * sin(angle + y * SLIDE),
+                  z * S_SIZE * sin(angle + z * SLIDE)
                   )
         box(box_size)
 
 
 def keyPressed():
-    global SAVE_FRAME
+    global save_frame
     if key == "s":
-        SAVE_FRAME = True
+        save_frame = True
