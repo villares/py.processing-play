@@ -13,7 +13,7 @@ def draw():
     """  """
     for x in range(grid_size):
         for y in range(grid_size):
-            3fill(cell_list[x + y * grid_size])
+            fill(cell_list[x + y * grid_size])
             rect(x*cell_size, y*cell_size,
                  cell_size, cell_size)
             
