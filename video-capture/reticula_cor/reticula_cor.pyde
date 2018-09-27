@@ -22,6 +22,7 @@ def setup():
     background(0)
 
 def draw():
+    background(0)
     if video.available():
         video.read()
         video.loadPixels()
@@ -32,9 +33,6 @@ def draw():
                 x = i * tamanho
                 y = j * tamanho
                 loc = x + y * video.width  # acha posição do pixel na captura
-                fill(0) # preto
-                # círculo preto para limpar frame anterior
-                ellipse(x + tamanho / 2, y + tamanho / 2, tamanho, tamanho)
                 cor = video.pixels[loc]  # pega cor do pixel
                 fill(cor)                # aplica cor do pixel 
                 lumin = brightness(cor)  # calcula luminosidade do pixel
