@@ -1,6 +1,6 @@
 
-go = False
-kind = ""
+thread_ongoing = False
+sort_by = None
 
 def setup():
     global img, original
@@ -22,51 +22,48 @@ def draw():
         
 
 def keyPressed():
-    global go, kind
-    if go:
-        go = False
+    global thread_ongoing, sort_by
+    
+    options = {"w" : brightness,
+        "r" : red,
+        "g" : green,
+        "b" : blue,
+        "h" : hue,
+        "s" : saturation,
+        "c" : lambda pix: pix
+        }
+    
+    if thread_ongoing:
+        thread_ongoing = False
     else:
-        go = True
-        kind = key
-        thread("sort_it")
+        sort_by = options.get(key)
+        if sort_by:
+            thread_ongoing = True
+            thread("sort_it")
 
     
 def sort_it():
-    global go
-    if go:
+    print("sort_it() started!")
+    global thread_ongoing
+    if thread_ongoing:
+        print(key)
         for i in range(len(img.pixels)):
             record_value = -1000000000
             selected_pixel = i
             for j in range (i,  len(img.pixels)):
                 pix = img.pixels[j]
-                value = 0
-                if kind == 'b':
-                    value = brightness(pix)
-                elif kind == 'h':
-                    value = hue(pix)
-                elif kind == 's':
-                    value = saturation(pix)
-                elif kind == 'r':
-                    value = red(pix)
-                elif kind == 'g':
-                    value = green(pix)
-                elif kind == 'a':
-                    value = blue(pix)
-                elif kind == 'c':
-                    value = pix
-                else:
-                    break
-                if value > record_value:
-                    selected_pixel = j
-                    record_value = value
-
+                if sort_by:
+                    value = sort_by(pix)                
+                    if value > record_value:
+                        selected_pixel = j
+                        record_value = value
             # troca o pixel em selected_pixel com o i
             temp = img.pixels[i]
             img.pixels[i] = img.pixels[selected_pixel]
             img.pixels[selected_pixel] = temp
             img.updatePixels()
             redraw()
-            print(kind)
-
         println("done!")
-        go = False
+        thread_ongoing = False
+    print(thread_ongoing)
+    println("end!")
