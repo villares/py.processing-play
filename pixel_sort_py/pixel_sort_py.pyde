@@ -24,13 +24,14 @@ def draw():
 def keyPressed():
     global thread_ongoing, sort_by
     
-    options = {"w" : brightness,
+    options = {
+        "w" : brightness,
         "r" : red,
         "g" : green,
         "b" : blue,
         "h" : hue,
         "s" : saturation,
-        "c" : lambda pix: pix
+        "c" : lambda pix: pix,
         }
     
     if thread_ongoing:
