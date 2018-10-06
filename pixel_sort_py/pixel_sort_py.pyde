@@ -8,7 +8,7 @@ def setup():
     original = loadImage("b.png")
     img = original.get()
     img.loadPixels()
-    println("loaded " + str(img.pixels.length))
+    println("loaded " + str(len(img.pixels)))
     noLoop()
 
 
