@@ -41,6 +41,8 @@ def keyPressed():
         if sort_by:
             thread_ongoing = True
             thread("sort_it")
+        else:
+            thread_ongoing = False
 
     
 def sort_it():
