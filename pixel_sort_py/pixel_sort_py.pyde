@@ -31,22 +31,22 @@ def keyPressed():
         "b" : blue,
         "h" : hue,
         "s" : saturation,
-        "c" : lambda pix: pix,
+        "c" : lambda pix: pix, # sort color as int
         }
     
-    if thread_ongoing:
-        thread_ongoing = False
-    else:
-        sort_by = options.get(key)
-        if sort_by:
+    sort_by = options.get(key)
+    if sort_by:
+        if thread_ongoing:   
+            pass
+        else:    
             thread_ongoing = True
             thread("sort_it")
-        else:
-            thread_ongoing = False
+    else:
+        thread_ongoing = False
 
     
 def sort_it():
-    print("sort_it() started!")
+    print("sort_it() started")
     global thread_ongoing
     if thread_ongoing:
         print(key)
@@ -60,13 +60,16 @@ def sort_it():
                     if value > record_value:
                         selected_pixel = j
                         record_value = value
+                else:
+                    break
+            if not sort_by:
+                break
             # troca o pixel em selected_pixel com o i
             temp = img.pixels[i]
             img.pixels[i] = img.pixels[selected_pixel]
             img.pixels[selected_pixel] = temp
             img.updatePixels()
             redraw()
-        println("done!")
+        println("sort done (or interrupted)!")
         thread_ongoing = False
-    print(thread_ongoing)
-    println("end!")
+    println("sort_it() end")
