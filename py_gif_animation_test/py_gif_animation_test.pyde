@@ -1,8 +1,9 @@
 """
-Testing a helper for the Processing GifMaker library (https://github.com/jordanorelli)
-ported to Processing 3 by 01010101 (https://github.com/01010101)
-Download it from https://github.com/01010101/GifAnimation/archive/master.zip
-Inspired by example by Art Simon https://github.com/APCSPrinciples/AnimatedGIF/
+Alexandre B A Villares http://abav.lugaralgum.com - GPL v3 
+
+Testing a helper for the Processing GifMaker Gif Animation librarie https://github.com/extrapixel/gif-animation/tree/3.0
+Download from https://github.com/villares/processing-play/blob/master/export_GIF/unzip_and_move_to_libraries_GifAnimation.zip
+This helper was inspired by an example by Art Simon https://github.com/APCSPrinciples/AnimatedGIF/
 """
 
 add_library('gifAnimation')
