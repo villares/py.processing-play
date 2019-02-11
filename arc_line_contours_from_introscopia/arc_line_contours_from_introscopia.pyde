@@ -1,4 +1,4 @@
-# código do John - https://github.com/Introscopia
+# Portado de código do John - https://github.com/Introscopia
 
 r = 100
 P, a = [], [0] * 3
