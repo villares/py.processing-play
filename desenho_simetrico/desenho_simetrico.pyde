@@ -1,11 +1,14 @@
 '''
-Prova de conceito, programa de desenho com simetria radial
 Alexandre B A Villares - http://abav.lugaralgum.com
-Para rodar, instale o Processing Python Mode:
+Desenho com simetria radial / Radial drawing
+
+Use Processing Python Mode:
 http://abav.lugaralgum.com/como-instalar-o-processing-modo-python/
-DOE: http://patreon.com/arteprog
+
+Apoie-nos! / Support us! http://patreon.com/arteprog
 '''
-divisoes = 12
+
+divisoes = 12 # divisions/rotations
 
 def setup():
     size(500, 500)
@@ -13,13 +16,14 @@ def setup():
     strokeWeight(5)
 
 def draw():
-    translate(width / 2, height / 2)  # este é desfeito ao final do draw
+    translate(width / 2, height / 2)  # desfeito ao final de draw / undone at the end of draw
     for _ in range(divisoes):
         rotate(TWO_PI / divisoes)
         if mousePressed:
             with pushMatrix():
                 translate(-width / 2, -height / 2)
                 line(pmouseX, pmouseY, mouseX, mouseY)
+                
 def keyPressed():
     global divisoes
     if key in ['+', '=']: divisoes += 1
