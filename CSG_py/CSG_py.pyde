@@ -1,4 +1,4 @@
-# JCSG library adapted for use with Processing by by George Profenza https://stackoverflow.com/users/89766/george-profenza
+# JCSG library adapted for use with Processing by George Profenza https://stackoverflow.com/users/89766/george-profenza
 # https://stackoverflow.com/questions/56999816/is-it-possible-to-use-jcsg-library-with-processing
 
 # You'll need to copy these libs into your Processing libraries folder: 
