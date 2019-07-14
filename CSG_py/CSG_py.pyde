@@ -23,8 +23,6 @@ def draw():
 
 
 def calculate_stuff():
-    global csgResult  # the PShape reference which will contain the converted
-
     # Jsample code:
     # we use cube and sphere_ as base geometries
     cube = Cube(2).toCSG()
