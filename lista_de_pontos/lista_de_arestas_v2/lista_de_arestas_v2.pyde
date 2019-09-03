@@ -73,6 +73,9 @@ class Ponto():
         self.vy = random(-velocidade, velocidade)
         self.sel = False   # se está selecionado
         self.cria_arestas()
+        
+    def __getitem__(self, i):
+        return (self.x, self.y, self.z)[i]
 
     def desenha(self):
         fill(self.cor)

@@ -84,6 +84,9 @@ class Ponto():
                          random(128, 255),  # B
                          128)              # Alpha ~50%
         self.cria_arestas()
+        
+    def __getitem__(self, i):
+        return (self.x, self.y, self.z)[i]
 
     def desenha(self):
         if self.sel:
