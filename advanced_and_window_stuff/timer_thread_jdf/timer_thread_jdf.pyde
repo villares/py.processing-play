@@ -18,7 +18,7 @@ class Timer(threading.Thread):
 
 def setup():
     global t
-    t = Timer(.8, doSomething)
+    t = Timer(10, doSomething)
     t.start()
 
 def doSomething():

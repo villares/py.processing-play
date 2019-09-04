@@ -25,12 +25,12 @@ def draw():
                 strokeWeight(2)
                 if (x + y) % 100 == 0:
                     stroke('#FFCDA5')
-                    shape(x, y, 10, sz2)
+                    poly_shape(x, y, 10, sz2)
                 else:
                     stroke('#9A5584')
-                    shape(x, y, 10, sz2)
+                    poly_shape(x, y, 10, sz2)
 
-def shape(xPos, yPos, pOne, pTwo):
+def poly_shape(xPos, yPos, pOne, pTwo):
     with pushMatrix():
         translate(xPos, yPos)
         rotate(radians(45))
