@@ -19,8 +19,9 @@ def draw():
     global index
     if index < len(lines):
         pieces = lines[index].split('\t')
-        if len(pieces) == 2:
-            x, y = int(pieces[0]) * 2, int(pieces[1]) * 2
-            point(x, y)
+        # x, y = map(lambda p: int(p) * 2, pieces)
+        # point(x, y)
+        strx, stry = pieces
+        point(int(strx) * 2, int(stry) * 2)
         # Go to the next line for the next run through draw()
         index = index + 1
