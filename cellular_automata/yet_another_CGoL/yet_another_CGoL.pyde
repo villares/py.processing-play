@@ -13,8 +13,8 @@ def setup():
     colorMode(HSB)
     rows = height / cell_size
     cols = width / cell_size
-    grid = set_grid()
-    next_grid = set_grid()
+    grid = empty_grid()
+    next_grid = empty_grid()
     noStroke()
 
 def draw():
@@ -24,30 +24,32 @@ def draw():
         for j in range(rows):
             y  = j * cell_size
             current_state = grid[i][j]
-            fill(clr, 255, current_state * 255, 100)
+            # fill(clr, 255, current_state * 255, 100) # translucent
+            fill(clr, 255, current_state * 255)
             if current_state:
-                circle(x, y, cell_size * 2)
+                # circle(x, y, cell_size * 2) # overlapping circles
+                square(x, y, cell_size)
             if play:
-                ngbs_list_alive = calc_ngbs_list(i, j)
-                result = rule(current_state, ngbs_list_alive)
+                ngbs_alive = calc_ngbs_alive(i, j)
+                result = rule(current_state, ngbs_alive)
                 next_grid[i][j] = result  
     
     if play:
         step()
 
-def calc_ngbs_list(i, j):
+def calc_ngbs_alive(i, j):
     alive = 0
     for iv, jv  in ngbs_list:
         alive += grid[(i + iv) % cols][(j + jv) % rows]
     return alive
 
-def set_grid():
+def empty_grid():
     grid = []
     for _ in range(cols):
         grid.append([0] * rows)
     return grid
 
-def random_grid():
+def randomize_grid():
     from random import choice
     global clr
     clr = random(255)
@@ -66,11 +68,14 @@ def rule(s, v):
 def step():
     global grid, next_grid
     grid = next_grid
-    next_grid = set_grid()
+    next_grid = empty_grid()
 
 def keyPressed():
+    global grid
+    if key == "e":
+        grid = empty_grid()
     if key == "r":
-        random_grid()
+        randomize_grid()
     if key == " ":
         global play
         play = not play
