@@ -1,21 +1,28 @@
-cell_size = 10
+"""
+Yet another Conway's Game of Life example - for Processing Python Mode
+"""
 
-clr = 255
-ngbs_list = ((-1,  0), ( 1,  0),
-            (-1, -1), ( 0, -1),
-            ( 1, -1), (-1,  1),
-            ( 0,  1), ( 1,  1)) 
+NEIGHBOURS = ((-1,  0), ( 1,  0),
+              (-1, -1), ( 0, -1),
+              ( 1, -1), (-1,  1),
+              ( 0,  1), ( 1,  1)) 
 play = False
+cell_size = 10
+clr = 255
 
 def setup():
     global grid, next_grid, rows, cols
     size(800, 500)
     colorMode(HSB)
+    noStroke()
     rows = height / cell_size
     cols = width / cell_size
     grid = empty_grid()
     next_grid = empty_grid()
-    noStroke()
+    randomize_grid()
+    println("Press 'space' to start/stop")
+    println("'e' to clear all cells")
+    println("'r' to randomize grid")
 
 def draw():
     background(0)
@@ -39,7 +46,7 @@ def draw():
 
 def calc_ngbs_alive(i, j):
     alive = 0
-    for iv, jv  in ngbs_list:
+    for iv, jv  in NEIGHBOURS:
         alive += grid[(i + iv) % cols][(j + jv) % rows]
     return alive
 
@@ -97,4 +104,3 @@ def invert_on_mouse():
                 
 def mouse_over(x, y):
     return x < mouseX < x + cell_size and y < mouseY < y + cell_size
-
