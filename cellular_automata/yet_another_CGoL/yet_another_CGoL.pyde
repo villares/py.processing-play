@@ -15,11 +15,13 @@ def setup():
     size(800, 500)
     colorMode(HSB)
     noStroke()
+    
     rows = height / cell_size
     cols = width / cell_size
     grid = empty_grid()
     next_grid = empty_grid()
     randomize_grid()
+    
     println("Press 'space' to start/stop")
     println("'e' to clear all cells")
     println("'r' to randomize grid")
@@ -40,10 +42,17 @@ def draw():
                 ngbs_alive = calc_ngbs_alive(i, j)
                 result = rule(current_state, ngbs_alive)
                 next_grid[i][j] = result  
-    
     if play:
-        step()
+        step()      
 
+def rule(current, ngbs):
+    if ngbs < 2 or ngbs > 3:
+        return 0 # dead
+    elif ngbs == 3:
+        return 1 # alive
+    else:
+        return current        
+        
 def calc_ngbs_alive(i, j):
     alive = 0
     for iv, jv  in NEIGHBOURS:
@@ -63,14 +72,6 @@ def randomize_grid():
     for i in range(cols):
         for j in range(rows):
             grid[i][j] = choice((0, 1))
-
-def rule(s, v):
-    if v < 2 or v > 3:
-        return 0
-    elif v == 3:
-        return 1
-    else:
-        return s
 
 def step():
     global grid, next_grid
