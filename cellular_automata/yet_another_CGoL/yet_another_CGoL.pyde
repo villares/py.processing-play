@@ -33,8 +33,8 @@ def draw():
         for j in range(rows):
             y  = j * cell_size
             current_state = grid[i][j]
-            # fill(clr, 255, current_state * 255, 100) # translucent
-            fill(clr, 255, current_state * 255)
+            # fill(clr, 255, 255, 100) # translucent
+            fill(clr, 255, 255)
             if current_state:
                 # circle(x, y, cell_size * 2) # overlapping circles
                 square(x, y, cell_size)
@@ -79,13 +79,12 @@ def step():
     next_grid = empty_grid()
 
 def keyPressed():
-    global grid
+    global grid, play
     if key == "e":
         grid = empty_grid()
     if key == "r":
         randomize_grid()
     if key == " ":
-        global play
         play = not play
         
 def mouseReleased():
