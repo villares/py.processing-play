@@ -6,7 +6,7 @@ def draw():
     branch(250, 300, 50)
     noLoop()
 
-def branch(x, y, siz):  # falho
+def branch(x, y, siz):  # galho
     shrink = 5 # encolhimento
     ang = 30 # ângulo
     ang_rnd = 15 # faixa de randomização do ângulo
