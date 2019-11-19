@@ -2,28 +2,30 @@
 # https://discourse.processing.org/t/program-to-test-hint-with-transparency/4361
 # plus a few hints from https://processing.org/reference/hint_.html
 
-tests = ((DISABLE_DEPTH_TEST, ENABLE_DEPTH_TEST, "DEPTH_TEST"),
-         (DISABLE_DEPTH_SORT, ENABLE_DEPTH_SORT, "DEPTH_SORT"),
-         (DISABLE_DEPTH_MASK, ENABLE_DEPTH_MASK, "DEPTH_MASK"),
-         (DISABLE_OPTIMIZED_STROKE, ENABLE_OPTIMIZED_STROKE,
-          "OPTIMIZED_STROKE"),
-         (DISABLE_STROKE_PERSPECTIVE, ENABLE_STROKE_PERSPECTIVE,
-          "STROKE_PERSPECTIVE"),
+# ["name", hint_status, hint_disable_constant, hint_enable_constant]
+hints = (["DEPTH_TEST", False,
+          DISABLE_DEPTH_TEST, ENABLE_DEPTH_TEST],
+         ["DEPTH_SORT", False,
+          DISABLE_DEPTH_SORT, ENABLE_DEPTH_SORT],
+         ["DEPTH_MASK", False,
+          DISABLE_DEPTH_MASK, ENABLE_DEPTH_MASK],
+         ["OPTIMIZED_STROKE", False,
+          DISABLE_OPTIMIZED_STROKE, ENABLE_OPTIMIZED_STROKE],
+         ["STROKE_PERSPECTIVE", False,
+          DISABLE_STROKE_PERSPECTIVE, ENABLE_STROKE_PERSPECTIVE],
          )
-
-b = [False] * len(tests) # list of booleans to toggle hint tests
 
 def setup():
     size(800, 600, P3D)
-    for disable_hint, _, _ in tests:
-        hint(disable_hint)
+    for _, _, disable_const, _ in hints:
+        hint(disable_const)
 
 def draw():
     background(255)
 
     fill(0)
-    for i, (_, _, name) in enumerate(tests):
-        text("{} {}".format(name, str(b[i])), 20, 20 + i * 20)
+    for i, (name, status, _, _) in enumerate(hints):
+        text("{} {}".format(name, str(status)), 20, 20 + i * 20)
     text("<- use the mouse to toggle settings", 200, 40)
 
     fill(255, 40, 20, 100)
@@ -39,9 +41,8 @@ def draw():
 
 def mousePressed():
     id = mouseY / 20
-    if id < len(b):
-        b[id] = not b[id]
+    if id < len(hints):
+        hints[id][1] = not hints[id][1]
 
-    for i, (disable_hint, enable_hint, _) in enumerate(tests):
-        hint(enable_hint if b[i] else disable_hint)
- 
+    for _, status, disable_const, enable_const in hints:
+        hint(enable_const if status else disable_const)
