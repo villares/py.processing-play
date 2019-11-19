@@ -2,25 +2,28 @@
 # https://discourse.processing.org/t/program-to-test-hint-with-transparency/4361
 # plus a few hints from https://processing.org/reference/hint_.html
 
-b = [False] * 5 # list of booleans to toggle hints
+tests = ((DISABLE_DEPTH_TEST, ENABLE_DEPTH_TEST, "DEPTH_TEST"),
+         (DISABLE_DEPTH_SORT, ENABLE_DEPTH_SORT, "DEPTH_SORT"),
+         (DISABLE_DEPTH_MASK, ENABLE_DEPTH_MASK, "DEPTH_MASK"),
+         (DISABLE_OPTIMIZED_STROKE, ENABLE_OPTIMIZED_STROKE,
+          "OPTIMIZED_STROKE"),
+         (DISABLE_STROKE_PERSPECTIVE, ENABLE_STROKE_PERSPECTIVE,
+          "STROKE_PERSPECTIVE"),
+         )
+
+b = [False] * len(tests) # list of booleans to toggle hint tests
 
 def setup():
     size(800, 600, P3D)
-    hint(DISABLE_DEPTH_TEST)
-    hint(DISABLE_DEPTH_SORT)
-    hint(DISABLE_DEPTH_MASK)
-    hint(DISABLE_OPTIMIZED_STROKE)
-    hint(DISABLE_STROKE_PERSPECTIVE)
-    
+    for disable_hint, _, _ in tests:
+        hint(disable_hint)
+
 def draw():
     background(255)
 
     fill(0)
-    text("DEPTH_TEST " + str(b[0]), 20, 20)
-    text("DEPTH_SORT " + str(b[1]), 20, 40)
-    text("DEPTH_MASK " + str(b[2]), 20, 60)
-    text("OPTIMIZED_STROKE " + str(b[3]), 20, 80)
-    text("STROKE_PERSPECTIVE " + str(b[4]), 20, 100)
+    for i, (_, _, name) in enumerate(tests):
+        text("{} {}".format(name, str(b[i])), 20, 20 + i * 20)
     text("<- use the mouse to toggle settings", 200, 40)
 
     fill(255, 40, 20, 100)
