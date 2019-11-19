@@ -42,8 +42,6 @@ def mousePressed():
     if id < len(b):
         b[id] = not b[id]
 
-    hint((DISABLE_DEPTH_TEST, ENABLE_DEPTH_TEST)[b[0]])
-    hint((DISABLE_DEPTH_SORT, ENABLE_DEPTH_SORT)[b[1]])
-    hint((DISABLE_DEPTH_MASK, ENABLE_DEPTH_MASK)[b[2]])
-    hint((DISABLE_OPTIMIZED_STROKE, ENABLE_OPTIMIZED_STROKE)[b[3]])
-    hint((DISABLE_STROKE_PERSPECTIVE, ENABLE_STROKE_PERSPECTIVE)[b[4]])
+    for i, (disable_hint, enable_hint, _) in enumerate(tests):
+        hint(enable_hint if b[i] else disable_hint)
+ 
