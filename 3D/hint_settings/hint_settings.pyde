@@ -17,13 +17,12 @@ hints = (["DEPTH_TEST", False,
          )
 use_sphere = False
 
-
 def setup():
     size(800, 600, P3D)
     apply_hints()
 
 def draw():
-    this.surface.title = 'FPS: {}'.format(this.round(frameRate))
+    this.surface.title = 'FPS: {}'.format(round(frameRate))
     background(255)
 
     fill(0)
@@ -35,7 +34,6 @@ def draw():
     fill(255, 40, 20, 100)
     translate(width / 2, height / 2)
     rotateY(frameCount * 0.005)
-
     for x in range(-200, 201, 200):
         for y in range(-200, 201, 200):
             pushMatrix()
