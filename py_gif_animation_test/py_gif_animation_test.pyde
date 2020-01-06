@@ -1,10 +1,12 @@
 """
 Alexandre B A Villares http://abav.lugaralgum.com - GPL v3 
 
-Testing a helper for the Processing GifMaker Gif Animation library
-https://github.com/extrapixel/gif-animation/tree/3.0
-Download github.com/extrapixel/gif-animation/archive/3.0.zip
-Read the comments inside gif_export.py
+Testing the Processing GifMaker Gif Animation library github.com/extrapixel/gif-animation/tree/3.0
+Download the library from:
+https://github.com/extrapixel/gif-animation/archive/3.0.zip
+Download the gif_export.py helper from:
+https://github.com/villares/py.processing-play/blob/master/py_gif_animation_test/gif_export.py
+Read the comments inside gif_export.py!
 """
 
 # add the following 2 lines
