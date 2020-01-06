@@ -1,14 +1,15 @@
 """
 Alexandre B A Villares http://abav.lugaralgum.com - GPL v3 
 
-Testing a helper for the Processing GifMaker Gif Animation librarie https://github.com/extrapixel/gif-animation/tree/3.0
-Download from https://github.com/villares/processing-play/blob/master/export_GIF/unzip_and_move_to_libraries_GifAnimation.zip
-This helper was inspired by an example by Art Simon https://github.com/APCSPrinciples/AnimatedGIF/
+Testing a helper for the Processing GifMaker Gif Animation library
+https://github.com/extrapixel/gif-animation/tree/3.0
+Download github.com/extrapixel/gif-animation/archive/3.0.zip
+Read the comments inside gif_export.py
 """
 
 # add the following 2 lines
 add_library('gifAnimation')
-from gif_exporter import gif_export
+from gif_export import gif_export
 
 diameter = 1
 
