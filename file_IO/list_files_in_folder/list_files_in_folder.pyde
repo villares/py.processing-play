@@ -1,6 +1,6 @@
 def setup():
-    file_names = list_files("out")
-    
+    #file_names = list_files("outro")  # list_files_in_folder/outro
+    file_names = list_files() # default "data\" (list_files_in_folder/data)
     for fn in file_names:
         println(fn)
 
