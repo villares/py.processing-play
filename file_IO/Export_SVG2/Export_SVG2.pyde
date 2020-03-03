@@ -9,7 +9,7 @@ def setup():
     # PGraphics pgDrawing
     pgDrawing = createGraphics(400, 400, SVG, "test.svg")
     beginRecord(pgDrawing)
-    background(255)
+    # background(255)
     stroke(0)
     strokeWeight(4)
     rect(10, 10, 70, 50, 10)
