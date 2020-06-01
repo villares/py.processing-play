@@ -26,7 +26,7 @@ def gif_export(GifMaker,             # gets a reference to the library
                quality=100,          # quality range 0 - 255 test yourself,my guess is 0 best/high 255 worst/low
                delay=170,            # this is quick
                frames=0,             # 0 will stop only if 'e' key pressed
-               transparent=None      # set a transparent color
+               transparent=None,     # set a transparent color
                finish=False):        # force stop
     global gifExporter
     try:
