@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Alexandre B A Villares http://abav.lugaralgum.com - v2020_05_31 - Licensed under GPL v3
+Alexandre B A Villares http://abav.lugaralgum.com - v2020_06_01 - Licensed under GPL v3
 Inspired by an example by Art Simon https://github.com/APCSPrinciples/AnimatedGIF/
 
 This is a helper for the Processing gifAnimation library https://github.com/extrapixel/gif-animation/tree/3.0
