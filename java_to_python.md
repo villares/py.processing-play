@@ -1,6 +1,6 @@
 
 
-# Tips for porting Processing code from Java mode to Python mode
+## Tips for porting Processing Java code to Python mode
 
 >… And possibly vice versa :)
 
