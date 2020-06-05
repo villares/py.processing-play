@@ -2,6 +2,8 @@
 
 >… And possibly vice versa :)
 
+[versão em português](https://abav.lugaralgum.com/material-aulas/Processing-Python/java_para_python/)
+
 ### Getting started
 
 - Comments with `//` in Java become comments with `#`. Multiline comments with `/ *… * /` can be converted to *docstrings*, with triple quotes in Python, `""" ... """`.
@@ -34,10 +36,10 @@ Boolean values ​​in Java are `true` and` false`, in Python they are `True` a
 | Java | Python |
 | ------------------------------------------------ | ------------------------------------------ |
 | `void func () {…}` | `def func ():…` |
-| `true` and` false` | True and False |
-| ``` a && b``` (** and ** logical) | `a and b` |
-| `a || b` (** or ** logical) | `a or b` |
-| `! a` (** no ** logical) | `not a` |
+| `true` and` false` | `True` and `False` |
+| ``` a && b``` (**and** logical) | `a` and `b` |
+| `a || b` (**or** logical) | `a` or `b` |
+| `! a` (**no** logical) | `not a` |
 | `i ++` (increment) | `i + = 1` |
 | `i -` (decrement) | `i - = 1` |
 | `a <= b && b <c` | `a <= b <c` |
@@ -45,7 +47,7 @@ Boolean values ​​in Java are `true` and` false`, in Python they are `True` a
 | `for (int i = start; i <limit; i += step) {…` | `for i in range (start, limit, step):…` |
 | `for (Ball b: arrayListOfBalls) {…` | `for b in listOfBalls:…` |
 
-Similar to `null` in Java we have the value ` None` in Python they are not totally equivalent but it is a good guess to make the substitution.
+Similar to `null` in Java we have the value ` None` in Python, they are not totally equivalent but it is usually a good guess to make the substitution.
 
 ### Looping with `for`
 
