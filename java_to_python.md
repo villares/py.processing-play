@@ -1,5 +1,3 @@
-
-
 ## Tips for porting Processing Java code to Python mode
 
 >… And possibly vice versa :)
@@ -29,7 +27,7 @@
 - The braces need to be removed, and you should replace each `{` with `:` at the beginning of an instruction block (this is not true for *array definitions*, which have braces but are not an instruction block, and will probably become a list or tuple with `[]` or` () `.
 - Remove the `;` at the end of the lines.
 
-### A table with equivalences for conversion
+### A table with some equivalences for conversion
 
 Boolean values ​​in Java are `true` and` false`, in Python they are `True` and` False`. Let's make a chart with the logical operators and some other equivalences.
 
@@ -51,9 +49,9 @@ Similar to `null` in Java we have the value ` None` in Python they are not total
 
 ### Looping with `for`
 
-The simplest case is a `for` based on any counter, such as ` for (int i = 0; i <limit; i++) {… ` which translates to `for i in range (limit): ... ` and the so-called *for each* loop, shown in the box, is also very straightforward.
+The simplest case is a `for` based on a counter, such as ` for (int i = 0; i <limit; i++) {… ` which translates to `for i in range(limit): … ` and the so-called *for each* loop, shown in the chart, is also very straightforward.
 
-As the `range()`based for construct in Python works only with integers, so if you have a Java `for` loop with a *float* step, you'll have to convert it to a `while` loop.
+As the `range()` based `for` construct in Python works only with integers, if you have a Java `for` loop with a *float* step, you'll have to convert it to a `while` loop.
 
 **Java**
 
@@ -95,7 +93,7 @@ for i, item in enumerate (my_list):
     something(i, item)
 ```
 
-Here is a reversed iteration for removing items from an *ArrayList* in Java, a list in Python:
+Here a reversed iteration for removing items from an *ArrayList* in Java, a list in Python:
 
 **Java**
 
@@ -137,9 +135,9 @@ for i, p in reversed (list (enumerate (self.particles))):
         del p # or del self.particles [i]
 ```
 
-### `if`,` else` and their friends
+### `if`, `else` and their friends
 
-Note that the `if` condition in Python does not have the required parentheses in Java. The combination of an `else if` turns into an` elif` contraction.
+Note that the `if` condition in Python does not have the required parentheses in Java. The combination of an `else if`  becomes the `elif` contraction.
 
 **Java**
 
@@ -178,7 +176,7 @@ for i in range(2, width - 2, 2):
 **Java**
 
 ```java
-result = cond? a: b
+result = cond ? a: b
 ```
 
 **Python**
@@ -189,11 +187,13 @@ result = a if cond else b
 
 #### switch & case
 
-There is no `switch / case` in Python, you can change it to a sequence of `if / elif` or, if just to call different functions, a function dictionary [TO DO page about it].
+There is no `switch / case` in Python, you can change it to a sequence of `if / elif` or, if just to call different functions, a function dictionary [TO DO example for this].
 
 ### Global variables
 
-If the variable is *declared and initialized* (type and value are defined) at the beginning of the sketch just remove the type declaration, but since there is no Python declaration of a variable without making an assignment, when the variable is only declared (a type is indicated without *initialization*) at the beginning of the sketch we need to see where it is calculated the first time and add, at the beginning of the function, the statement `global variable_name`.
+If a variable is *declared and initialized* (type and value are defined) at the beginning of the sketch just remove the type declaration.
+
+Since there is no way in Python to declear a variable without making an assignment, when the variable is just declared (a type is set without *initialization*) at the beginning of the sketch, we need to find where it is assigned for the first time and add at the beginning of that function, the  `global variable_name` statement.
 
 In fact, every function that changes the assignment of global variables in its body needs the `global` statement with the names of the variables that are modified.
 
@@ -202,8 +202,8 @@ An example:
 **Java**
 
 ```java
-int rad = 60; // Width of the shape
-float xpos, ypos; // Starting position of shape
+int rad = 60;       // Width of the shape
+float xpos, ypos;   // Starting position of shape
 float xspeed = 2.8; // Speed of the shape
 yspeed float = 2.2; // Speed of the shape
 int xdirection = 1; // Left or Right
@@ -238,15 +238,15 @@ void draw ()
 
 ```python
 rad = 60; # Width of the shape
-# In the original it had: float xpos, ypos; // Starting position of shape
-xspeed = 2.8; # Speed of the shape
-yspeed = 2.2; # Speed of the shape
+# The original had: float xpos, ypos; // Starting position of shape
+xspeed = 2.8;   # Speed of the shape
+yspeed = 2.2;   # Speed of the shape
 xdirection = 1; # Left or Right
 ydirection = 1; # Top to Bottom
 
 def setup (): **Python**
     size (600, 300)
-    global xpos, ypos # xpos, ypos are global created in the setup
+    global xpos, ypos # xpos, ypos are globals created in setup
     noStroke ()
     xpos = width / 2
     ypos = height / 2
@@ -266,9 +266,9 @@ def draw ():
 
 ### Importing libraries and other sketch tabs
 
-In Java mode Processing the libraries are imported with `import` but in Python mode this instruction is more used to import * modules * from the standard Python library, and **. Py ** files like the other IDE tabs, which unlike Java mode are not automatically part of sketch.
+In Java mode Processing the libraries are imported with `import` but in Python mode this instruction is more often used to import *modules* from the Python standard library, and **. py ** files presented as other IDE tabs, which unlike Java mode are not automatically part of a sketch.
 
-Use the menu command ** Sketch> Import Library .. ** (or * Sketch> Import Library ... * in English) to add the line with `add_library ()` with the correct argument.
+Use the menu command **Sketch > Import Library... **to add the line with `add_library()` with the correct argument.
 
 **Java**
 
@@ -293,26 +293,26 @@ Java needs the keyword **`new`** to create an instance of a class, just remove i
 ```java
 VideoExport videoExport;
 
-void setup () {
-  size (600, 600);
-  videoExport = new VideoExport (this);
-  videoExport.startMovie ();
+void setup() {
+  size(600, 600);
+  videoExport = new VideoExport(this);
+  videoExport.startMovie();
 }
 ```
 
 **Python**
 
 ``` python
-def setup ():
+def setup():
     global videoExport
-    size (600, 600)
-    videoExport = VideoExport (this)
-    videoExport.startMovie ()
+    size(600, 600)
+    videoExport = VideoExport(this)
+    videoExport.startMovie()
 ```
 
 #### Declaring a class
 
-Class declarations change slightly, roughly, the `__init __ (self)` method plays the role of the *constructor* method of a Java class. See the `MRect` class in the example **Basics > Objects > Objects** that comes with the Processing IDE. You'll have to add `self` as the first parameter of each method, and `self.` to access it's members, methods & attributes.
+Class declarations change slightly, roughly, the `def __init__(self …): …` method plays the role of the *constructor* method of a Java class. See the `MRect` class in the example **Basics > Objects > Objects** that comes with the Processing IDE. You'll have to add `self` as the first parameter of each method, and `self.` to access it's members, methods & attributes.
 
 **Java**
 
