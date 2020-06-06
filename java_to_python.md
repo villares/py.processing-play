@@ -8,9 +8,9 @@
 
 - Comments with `//` in Java become comments with `#`. Multiline comments with `/*…*/` can be converted to *docstrings*, with triple quotes in Python, `""" … """`.
 
-- Java is a *static typing  language* and Python is a *dynamic typing language* that means we will remove all type declarations. Remove `int`, `float`,` String`, `color`,` boolean` from variable declarations. For example, `int i = 0; `becomes ` i = 0`.
+- Java is a *static typing  language* and Python is a *dynamic typing language* that means we will remove all type declarations. Remove `int`, `float`,` String`, `color`,` boolean` from variable declarations. For example, `int i = 0;` becomes `i = 0`.
 
-- We should also remove `void` or any type declaration from a function definition, replacing it with Python's ` def`. Also remove the type declaration from the function parameters.
+- We should also remove `void` or any type declaration from a function definition, replacing it with Python's `def`. Also remove the type declaration from the function parameters.
 
    **Java**
   
@@ -26,7 +26,7 @@
       return (a + b) / 2
   ```
 - It is common for the indentation of the Java code to reflect the hierarchy of instruction blocks, even if this is not mandatory (in Java the braces`{}` rule), use the IDE auto-formatting tool before you start!
-- The braces need to be removed, and you should replace each `{` with `:` at the beginning of an instruction block (this is not true for *array definitions*, which have braces but are not an instruction block, and will probably become a list or tuple with `[]` or` () `.
+- The braces need to be removed, and you should replace each `{` with `:` at the beginning of an instruction block (this is not true for *array definitions*, which have braces but are not an instruction block, and will probably become a list or tuple with `[]` or `()`.
 - Remove the `;` at the end of the lines.
 
 ### A table with some equivalences for conversion
@@ -47,7 +47,7 @@ Boolean values ​​in Java are `true` and` false`, in Python they are `True` a
 | `for (int i=start; i<limit; i+=step) { …` | `for i in range (start, limit, step): …` |
 | `for (Ball b : arrayListOfBalls) { …` | `for b in listOfBalls: …` |
 
-Similar to `null` in Java we have the value ` None` in Python, they are not totally equivalent but it is usually a good guess to make the substitution.
+Similar to `null` in Java we have the special value `None` in Python, they are not totally equivalent but it is usually a good guess to make the substitution.
 
 ### Looping with `for`
 
@@ -139,10 +139,9 @@ for i, p in reversed(list(enumerate(self.particles))):
 
 ### `if`, `else` and their friends
 
-Note that the `if` condition in Python does not have the required parentheses in Java. The combination of an `else if`  becomes the `elif` contraction.
+Note that the `if` condition in Python does not have the required parentheses as in Java. The combination of `else if`  becomes the `elif` contraction.
 
 **Java**
-
 ```java
 for (int i = 2; i < width-2; i += 2) {
   if ((i% 20) == 0) {
@@ -157,8 +156,8 @@ for (int i = 2; i < width-2; i += 2) {
   }
 }
 ```
-**Python**
 
+**Python**
 ```python
 for i in range(2, width - 2, 2):
     # If 'i' divides by 20 with no remainder
@@ -195,14 +194,13 @@ There is no `switch / case` in Python, you can change it to a sequence of `if / 
 
 If a variable is *declared and initialized* (type and value are defined) at the beginning of the sketch just remove the type declaration.
 
-Since there is no way in Python to declear a variable without making an assignment, when the variable is just declared (a type is set without *initialization*) at the beginning of the sketch, we need to find where it is assigned for the first time and add at the beginning of that function, the  `global variable_name` statement.
+Since there is no way in Python to declare a variable without making an assignment, when the variable is just declared (a type is set without *initialization*) at the beginning of the sketch, we need to find where it is assigned for the first time and add the `global variable_name` statementat at the beginning of that function.
 
 In fact, every function that changes the assignment of global variables in its body needs the `global` statement with the names of the variables that are modified.
 
 An example:
 
 **Java**
-
 ```java
 int rad = 60;       // Width of the shape
 float xpos, ypos;   // Starting position of shape
@@ -237,10 +235,9 @@ void draw ()
 ```
 
 **Python**
-
 ```python
 rad = 60; # Width of the shape
-# The original had: float xpos, ypos; // Starting position of shape
+# The original had this here: float xpos, ypos; // Starting position of shape
 xspeed = 2.8;   # Speed of the shape
 yspeed = 2.2;   # Speed of the shape
 xdirection = 1; # Left or Right
@@ -248,7 +245,7 @@ ydirection = 1; # Top to Bottom
 
 def setup (): **Python**
     size (600, 300)
-    global xpos, ypos # xpos, ypos are globals created in setup
+    global xpos, ypos # xpos, ypos are assigned first here in setup
     noStroke ()
     xpos = width / 2
     ypos = height / 2
@@ -259,18 +256,16 @@ def draw ():
     xpos + = xspeed * xdirection
     ypos + = yspeed * ydirection
     
-    if xpos < rad or width - rad <xpos: # note that rad is not changed
+    if xpos < rad or width - rad < xpos: # note that rad is never changed
         xdirection * = -1
-    if ypos < rad or height - rad <ypos:
+    if ypos < rad or height - rad < ypos:
         ydirection * = -1
     ellipse (xpos, ypos, rad * 2, rad * 2)
 ```
 
-
-
 ### Importing libraries and other sketch tabs
 
-In Java mode Processing the libraries are imported with `import` but in Python mode this instruction is more often used to import *modules* from the Python standard library, and **.py** files presented as other IDE tabs, which unlike Java mode are not automatically part of a sketch.
+In Java mode Processing the libraries are imported with `import` but in Python mode this instruction is more often used to import *modules* from the Python's standard library, and **.py** files presented as other IDE tabs (which, unlike in Java mode, are not automatically a part of the sketch).
 
 Use the menu command **Sketch > Import Library...** to add the line with `add_library()` with the correct argument.
 
