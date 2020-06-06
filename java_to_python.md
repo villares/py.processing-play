@@ -15,14 +15,14 @@
    **Java**
   
   ```java
-  float media (float a, float b) {
+  float average(float a, float b) {
     return (a + b) / 2;
   }
   ```
   **Python**
   
   ```python
-  def media (a, b):
+  def average(a, b):
       return (a + b) / 2
   ```
 - It is common for the indentation of the Java code to reflect the hierarchy of instruction blocks, even if this is not mandatory (in Java the braces`{}` rule), use the IDE auto-formatting tool before you start!
@@ -31,7 +31,7 @@
 
 ### A table with some equivalences for conversion
 
-Boolean values ​​in Java are `true` and` false`, in Python they are `True` and` False`. Let's make a chart with the logical operators and some other equivalences.
+Boolean values in Java are named `true` and` false`, in Python they are `True` and` False`. Let's make a chart with the logical operators and some other equivalences.
 
 | Java | Python |
 | ------------------------------------------------ | ------------------------------------------ |
@@ -51,9 +51,9 @@ Similar to `null` in Java we have the special value `None` in Python, they are n
 
 ### Looping with `for`
 
-The simplest case is a `for` based on a counter, such as `for (int i=0; i<limit; i++) {…` which translates into `for i in range(limit): … ` and the so-called *for each* loop, shown in the chart, is also very straightforward.
+The simplest case is a `for` based on a counter, such as `for (int i=0; i<limit; i++) { …` which translates into `for i in range(limit): …` and the so-called *for each* loop, shown in the chart, is also very straightforward.
 
-As the `range()` based `for` construct in Python works only with integers, if you have a Java `for` loop with a *float* step, you'll have to convert it to a `while` loop.
+But if you have a Java `for` loop with a *float* step, as the `range()` based `for` construct in Python works only with integers, you'll have to convert it to a `while` loop like in the example below.
 
 **Java**
 
