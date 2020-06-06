@@ -270,9 +270,9 @@ def draw ():
 
 ### Importing libraries and other sketch tabs
 
-In Java mode Processing the libraries are imported with `import` but in Python mode this instruction is more often used to import *modules* from the Python standard library, and **. py ** files presented as other IDE tabs, which unlike Java mode are not automatically part of a sketch.
+In Java mode Processing the libraries are imported with `import` but in Python mode this instruction is more often used to import *modules* from the Python standard library, and **.py** files presented as other IDE tabs, which unlike Java mode are not automatically part of a sketch.
 
-Use the menu command **Sketch > Import Library... **to add the line with `add_library()` with the correct argument.
+Use the menu command **Sketch > Import Library...** to add the line with `add_library()` with the correct argument.
 
 **Java**
 
@@ -288,7 +288,7 @@ add_library ('VideoExport') # the same Video Export library
 
 ### Object orientation
 
-#### Getting an instance and accessing methods and attributes
+#### Getting an instance and access to its methods and attributes
 
 Java needs the keyword **`new`** to create an instance of a class, just remove it! Access to methods and attributes is exactly the same.
 
