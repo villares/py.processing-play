@@ -2,7 +2,7 @@
 
 >… And possibly vice versa :)
 
-[versão em português](https://abav.lugaralgum.com/material-aulas/Processing-Python/java_para_python/)
+[versão em português](https://abav.lugaralgum.com/material-aulas/Processing-Python/java_para_python)
 
 ### Getting started
 
