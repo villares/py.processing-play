@@ -6,9 +6,9 @@
 
 ### Getting started
 
-- Comments with `//` in Java become comments with `#`. Multiline comments with `/ *… * /` can be converted to *docstrings*, with triple quotes in Python, `""" ... """`.
+- Comments with `//` in Java become comments with `#`. Multiline comments with `/*…*/` can be converted to *docstrings*, with triple quotes in Python, `""" … """`.
 
-- Java is a *static typing* language and Python is a *dynamic typing* language which means that we will remove all type declarations. Remove `int`, `float`,` String`, `color`,` boolean` from variable declarations. For example, `int i = 0; `becomes ` i = 0`.
+- Java is a *static typing  language* and Python is a *dynamic typing language* that means we will remove all type declarations. Remove `int`, `float`,` String`, `color`,` boolean` from variable declarations. For example, `int i = 0; `becomes ` i = 0`.
 
 - We should also remove `void` or any type declaration from a function definition, replacing it with Python's ` def`. Also remove the type declaration from the function parameters.
 
