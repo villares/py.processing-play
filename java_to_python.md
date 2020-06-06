@@ -51,7 +51,7 @@ Similar to `null` in Java we have the value ` None` in Python, they are not tota
 
 ### Looping with `for`
 
-The simplest case is a `for` based on a counter, such as ` for (int i = 0; i <limit; i++) {… ` which translates to `for i in range(limit): … ` and the so-called *for each* loop, shown in the chart, is also very straightforward.
+The simplest case is a `for` based on a counter, such as `for (int i = 0; i <limit; i++) {…` which translates into `for i in range(limit): … ` and the so-called *for each* loop, shown in the chart, is also very straightforward.
 
 As the `range()` based `for` construct in Python works only with integers, if you have a Java `for` loop with a *float* step, you'll have to convert it to a `while` loop.
 
@@ -79,7 +79,7 @@ Here an example of a loop made just to get objects from a data structure:
 
 ```java
 for (int i = 0; i <my_array.length; i ++) {
-  something(my_array [i]);
+  something(my_array[i]);
 }
 ```
 
@@ -91,7 +91,7 @@ for item in my_list:
 ```
 or, if you need the index.
 ```python
-for i, item in enumerate (my_list):
+for i, item in enumerate(my_list):
     something(i, item)
 ```
 
@@ -100,11 +100,11 @@ Here a reversed iteration for removing items from an *ArrayList* in Java, a list
 **Java**
 
 ```java
-for (int i = particles.size () - 1; i> = 0; i--) {
-  Particle p = particles.get (i);
-  p.run ();
-  if (p.isDead ()) {
-    particles.remove (i);
+for (int i = particles.size() - 1; i >= 0; i--) {
+  Particle p = particles.get(i);
+  p.run();
+  if (p.isDead()) {
+    particles.remove(i);
   }
 }
 ```
@@ -112,29 +112,29 @@ for (int i = particles.size () - 1; i> = 0; i--) {
 **Python**
 
 ```python
-for p in reversed (particles):
-    p.run ()
-    if p.isDead ():
+for p in reversed(particles):
+    p.run()
+    if p.isDead():
         del p
 ```
 
 or, if you need the index:
 
 ```python
-for i in reversed (range (len (particles))):
-    p = particles [i]
-    p.run ()
-    if p.isDead ():
-        del particles [i]
+for i in reversed(range(len(particles))):
+    p = particles[i]
+    p.run()
+    if p.isDead():
+        del particles[i]
 ```
 
 or yet:
 
 ```python
-for i, p in reversed (list (enumerate (self.particles))):
-    p.run ()
-    if p.isDead ():
-        del p # or del self.particles [i]
+for i, p in reversed(list(enumerate(self.particles))):
+    p.run()
+    if p.isDead():
+        del p # or del self.particles[i]
 ```
 
 ### `if`, `else` and their friends
@@ -144,7 +144,7 @@ Note that the `if` condition in Python does not have the required parentheses in
 **Java**
 
 ```java
-for (int i = 2; i <width-2; i + = 2) {
+for (int i = 2; i < width-2; i += 2) {
   if ((i% 20) == 0) {
     stroke (255);
     line (i, 80, i, height / 2);
