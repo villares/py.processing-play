@@ -259,12 +259,14 @@ def draw ():
     xpos + = xspeed * xdirection
     ypos + = yspeed * ydirection
     
-    if xpos <rad or width - rad <xpos: # note that rad is not changed
+    if xpos < rad or width - rad <xpos: # note that rad is not changed
         xdirection * = -1
-    if ypos <rad or height - rad <ypos:
+    if ypos < rad or height - rad <ypos:
         ydirection * = -1
     ellipse (xpos, ypos, rad * 2, rad * 2)
 ```
+
+
 
 ### Importing libraries and other sketch tabs
 
@@ -383,3 +385,46 @@ class MRect:
             rect(self.xpos + (i * (self.d + self.w)),
                  self.ypos, self.w, height * self.h)
 ```
+
+### Data structures
+
+Arrays like `int[]`, `float[]` or `PVector[]` usually become lists in Python (sometimes tuples if they are created and left alone).  ArrayList is very much like a list:
+
+**Java**
+
+```java
+ArrayList<Flag> flags; // a list of Flag de objetos
+
+void setup() {
+  size(400, 400); 
+  flags = new ArrayList<Flag>();
+  for (int i=0; i <50; i++) {
+    flags.add(new Flag(100, 100, 12));
+  }
+}
+```
+**Python**
+
+```python
+flags = []  # a list of Flag de objetos
+
+def setup():
+    size(400, 400); 
+    for i in range(50):
+        flags.append(Flag(100, 100, 12))
+```
+
+#### 2D Arrays
+
+```java
+int[][] board;
+board = new int[grid_w][grid_h]
+```
+A list of lists.
+
+```Python
+board = [[0] * grid_w for _ in range(grid_h)]
+```
+
+
+
