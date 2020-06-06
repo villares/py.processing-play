@@ -37,21 +37,21 @@ Boolean values ​​in Java are `true` and` false`, in Python they are `True` a
 | ------------------------------------------------ | ------------------------------------------ |
 | `void func () {…}` | `def func ():…` |
 | `true` and` false` | `True` and `False` |
-| ``` a && b``` (**and** logical) | `a` and `b` |
-| `a || b` (**or** logical) | `a` or `b` |
-| `! a` (**no** logical) | `not a` |
-| `i ++` (increment) | `i + = 1` |
-| `i -` (decrement) | `i - = 1` |
-| `a <= b && b <c` | `a <= b <c` |
-| `for (int i = 0; i <limit; i ++) {…` | `for i in range (limit):…` |
-| `for (int i = start; i <limit; i += step) {…` | `for i in range (start, limit, step):…` |
-| `for (Ball b: arrayListOfBalls) {…` | `for b in listOfBalls:…` |
+| ``` a && b``` (logical **and**) | `a` and `b` |
+| `a || b` (logical **or**) | `a` or `b` |
+| `!a` (logical **not**) | `not a` |
+| `i++` (increment) | `i += 1` |
+| `i--` (decrement) | `i -= 1` |
+| `a <= b && b < c` | `a <= b < c` |
+| `for (int i=0; i<limit; i++) { …` | `for i in range (limit): …` |
+| `for (int i=start; i<limit; i+=step) { …` | `for i in range (start, limit, step): …` |
+| `for (Ball b : arrayListOfBalls) { …` | `for b in listOfBalls: …` |
 
 Similar to `null` in Java we have the value ` None` in Python, they are not totally equivalent but it is usually a good guess to make the substitution.
 
 ### Looping with `for`
 
-The simplest case is a `for` based on a counter, such as `for (int i = 0; i <limit; i++) {…` which translates into `for i in range(limit): … ` and the so-called *for each* loop, shown in the chart, is also very straightforward.
+The simplest case is a `for` based on a counter, such as `for (int i=0; i<limit; i++) {…` which translates into `for i in range(limit): … ` and the so-called *for each* loop, shown in the chart, is also very straightforward.
 
 As the `range()` based `for` construct in Python works only with integers, if you have a Java `for` loop with a *float* step, you'll have to convert it to a `while` loop.
 
