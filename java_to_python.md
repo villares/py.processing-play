@@ -38,7 +38,7 @@ Boolean values in Java are named `true` and` false`, in Python they are `True` a
 | `void func() {…}` | `def func():…` |
 | `true` and` false` | `True` and `False` |
 | `a && b` (logical **and**) | `a` **`and`** `b` |
-| `a || b` (logical **or**) | `a` **`or`** `b` |
+| ```a || b``` (logical **or**) | `a` **`or`** `b` |
 | `!a` (logical **not**) | **`not`** `a` |
 | `i++` (increment) | `i += 1` |
 | `i--` (decrement) | `i -= 1` |
