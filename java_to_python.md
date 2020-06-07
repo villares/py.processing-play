@@ -35,11 +35,11 @@ Boolean values in Java are named `true` and` false`, in Python they are `True` a
 
 | Java | Python |
 | ------------------------------------------------ | ------------------------------------------ |
-| `void func () {…}` | `def func ():…` |
+| `void func() {…}` | `def func():…` |
 | `true` and` false` | `True` and `False` |
-| ``` a && b``` (logical **and**) | `a` and `b` |
-| `a || b` (logical **or**) | `a` or `b` |
-| `!a` (logical **not**) | `not a` |
+| `a && b` (logical **and**) | `a` **`and`** `b` |
+| `a || b` (logical **or**) | `a` **`or`** `b` |
+| `!a` (logical **not**) | **`not`** `a` |
 | `i++` (increment) | `i += 1` |
 | `i--` (decrement) | `i -= 1` |
 | `a <= b && b < c` | `a <= b < c` |
@@ -78,7 +78,7 @@ Here an example of a loop made just to get objects from a data structure:
 
 
 ```java
-for (int i = 0; i <my_array.length; i ++) {
+for (int i = 0; i < my_array.length; i ++) {
   something(my_array[i]);
 }
 ```
