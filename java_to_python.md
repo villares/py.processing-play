@@ -177,7 +177,7 @@ for i in range(2, width - 2, 2):
 **Java**
 
 ```java
-result = cond ? a: b
+result = cond ? a : b
 ```
 
 **Python**
