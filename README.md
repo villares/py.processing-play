@@ -9,7 +9,7 @@ To run these code snippets, you'll need to download the Processing IDE and set u
 * My [**Tips for porting Processing Java code to Python mode**](java_to_python.md)
 * Allison Parrish on Processing Python Mode: [**Python, Jython and Java**](http://py.processing.org/tutorials/python-jython-java/)
 
-### `this is a repository on` [`github.com/villares/py.processing-play`](github.com/villares/py.processing-play)
+### `this is a repository on` [`https://github.com/villares/py.processing-play`](github.com/villares/py.processing-play)
 
 #### Do you find this repo useful? Please consider [donating something!](http://gumroad.com/villares)
 
@@ -28,7 +28,7 @@ Se você vem do Processing (Java), ou do Python, leia isto:<br>
 * Allison Parrish: [Python, Jython e Java](https://github.com/arteprog/Processando-Processing/blob/master/tutoriais-PT/python-Python_Jython_e_Java.md)
 * [Dicas para portar de Processing Java para o Modo Python](https://abav.lugaralgum.com/material-aulas/Processing-Python/java_para_python)
 
-### `este é um repositório em` [`github.com/villares/py.processing-play`](github.com/villares/py.processing-play)
+### `este é um repositório em` [`https://github.com/villares/py.processing-play`](github.com/villares/py.processing-play)
 
 #### Acha útil este material? [Faça uma pequena doação](https://gumroad.com/villares)
 
