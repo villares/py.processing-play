@@ -284,7 +284,7 @@ Use the menu command **Sketch > Import Library...**  to add the line with `add_l
 import com.hamoid. *; // import VideoExport library in Java mode
 ```
 
-**Python**withd
+**Python**
 
 ```python
 add_library ('VideoExport') # the same VideoExport library in Python mode
