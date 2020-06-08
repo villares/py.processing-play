@@ -6,6 +6,12 @@
 
 ### Getting started
 
+- As you probably know already, Python uses indentation to place code lines 'inside' a function definition and in many other code nesting structures. In Java the braces`{}` rule, but it is common for the indentation to also reflect the code hierachy, even if this is not mandatory, so use the IDE auto-formatting tool before you start, and take care!
+
+- The braces need to be removed, and you should replace each `{` with `:` at the beginning of an instruction block (this is not true for *array definitions*, which have braces but are not an instruction block, and will probably become a list or tuple with `[]` or `()`.
+
+- Remove the `;` at the end of the lines.
+
 - Comments with `//` in Java become comments with `#`. Multiline comments with `/*…*/` can be converted to *docstrings*, with triple quotes in Python, `""" … """`.
 
 - Java is a *static typing  language* and Python is a *dynamic typing language* that means we will remove all type declarations. Remove `int`, `float`,` String`, `color`,` boolean` from variable declarations. For example, `int i = 0;` becomes `i = 0`.
@@ -25,9 +31,7 @@
   def average(a, b):
       return (a + b) / 2
   ```
-- It is common for the indentation of the Java code to reflect the hierarchy of instruction blocks, even if this is not mandatory (in Java the braces`{}` rule), use the IDE auto-formatting tool before you start!
-- The braces need to be removed, and you should replace each `{` with `:` at the beginning of an instruction block (this is not true for *array definitions*, which have braces but are not an instruction block, and will probably become a list or tuple with `[]` or `()`.
-- Remove the `;` at the end of the lines.
+
 
 ### A table with some equivalences for conversion
 
@@ -35,11 +39,11 @@ Boolean values in Java are named `true` and` false`, in Python they are `True` a
 
 | Java | Python |
 | ------------------------------------------------ | ------------------------------------------ |
-| `void func () {…}` | `def func ():…` |
-| `true` and` false` | `True` and `False` |
-| ``` a && b``` (logical **and**) | `a` and `b` |
-| `a || b` (logical **or**) | `a` or `b` |
-| `!a` (logical **not**) | `not a` |
+| `void func() {…}` | `def func():…` |
+| **`true`** and **`false`** | **`True`** and **`False`** |
+| `a && b` (logical **and**) | `a` **`and`** `b` |
+| ```a \|\| b``` (logical **or**) | `a` **`or`** `b` |
+| `!a` (logical **not**) | **`not`** `a` |
 | `i++` (increment) | `i += 1` |
 | `i--` (decrement) | `i -= 1` |
 | `a <= b && b < c` | `a <= b < c` |
@@ -79,7 +83,7 @@ Here an example of a loop made just to get objects from a data structure:
 
 
 ```java
-for (int i = 0; i <my_array.length; i ++) {
+for (int i = 0; i < my_array.length; i ++) {
   something(my_array[i]);
 }
 ```
@@ -178,7 +182,7 @@ for i in range(2, width - 2, 2):
 **Java**
 
 ```java
-result = cond ? a: b
+result = cond ? a : b
 ```
 
 **Python**
