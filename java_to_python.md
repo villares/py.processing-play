@@ -432,7 +432,7 @@ def setup():
 int[][] board;
 board = new int[grid_w][grid_h]
 ```
-A list of lists.
+A list of lists. No, you don't *need* numpy 2D arrays in Processing Python mode (and you don't have them...).
 
 ```Python
 board = [[0] * grid_w for _ in range(grid_h)]
