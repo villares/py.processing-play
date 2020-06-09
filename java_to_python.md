@@ -50,7 +50,7 @@ Boolean values in Java are named `true` and` false`, in Python they are `True` a
 | `for (int i=0; i<limit; i++) { …` | `for i in range (limit): …` |
 | `for (int i=start; i<limit; i+=step) { …` | `for i in range (start, limit, step): …` |
 | `for (Ball b : arrayListOfBalls) { …` | `for b in listOfBalls: …` |
-| `color(#FFCC00) // hexadecimal color notation` | `color('#FFCC00') # needs ' ' or " "` |
+| `fill(#FFCC00) // hexadecimal color notation` | `fill('#FFCC00') # needs ' ' or " "` (doesn't work with `color()`) |
 
 Similar to `null` in Java we have the special value `None` in Python, they are not totally equivalent but it is usually a good guess to make the substitution.
 
