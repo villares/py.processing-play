@@ -42,7 +42,7 @@ Boolean values in Java are named `true` and` false`, in Python they are `True` a
 | `void func() {…}` | `def func():…` |
 | **`true`** and **`false`** | **`True`** and **`False`** |
 | <code>a <b>&&</b> b</code> (logical AND) | `a` **`and`** `b` |
-| <code>a <b>||</b> b</code> (logical OR) | `a` **`or`** `b` |
+| <code>a <b>&#x7C;&#x7C;</b> b</code> (logical OR) | `a` **`or`** `b` |
 | <code><b>!</b>a</code> (logical NOT) | **`not`** `a` |
 | `i++` (increment) | `i += 1` |
 | `i--` (decrement) | `i -= 1` |
