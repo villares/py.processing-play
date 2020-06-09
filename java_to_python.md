@@ -41,9 +41,9 @@ Boolean values in Java are named `true` and` false`, in Python they are `True` a
 | ------------------------------------------------ | ------------------------------------------ |
 | `void func() {…}` | `def func():…` |
 | **`true`** and **`false`** | **`True`** and **`False`** |
-| `a && b` (logical **and**) | `a` **`and`** `b` |
-| ```a \|\| b``` (logical **or**) | `a` **`or`** `b` |
-| `!a` (logical **not**) | **`not`** `a` |
+| <code>a <b>&&</b> b</code> (logical AND) | `a` **`and`** `b` |
+| <code>a <b>||</b> b</code> (logical OR) | `a` **`or`** `b` |
+| <code><b>!</b>a</code> (logical NOT) | **`not`** `a` |
 | `i++` (increment) | `i += 1` |
 | `i--` (decrement) | `i -= 1` |
 | `a <= b && b < c` | `a <= b < c` |
@@ -416,6 +416,14 @@ def setup():
     size(400, 400); 
     for i in range(50):
         flags.append(Flag(100, 100, 12))
+```
+Or you could use a *list comprehension*:
+
+```python
+def setup():
+    global flags
+    size(400, 400); 
+    flags = [Flag(100, 100, 12) for i in range(50)]
 ```
 
 #### 2D Arrays
