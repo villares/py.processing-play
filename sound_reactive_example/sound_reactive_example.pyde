@@ -1,9 +1,10 @@
-add_library('sound') # aviso de que vai usar o microfone
+# You need to install the Sound library / precisa installar a biblioteca Sound
+add_library('sound') 
 
 def setup():
     size(600, 600)  
     global input, loudness, waveform, samples
-    source = AudioIn(this, 0)
+    source = AudioIn(this, 0) # source will be the computer mic / a fonte vai ser o microfone
     source.start()
     loudness = Amplitude(this)
     loudness.input(source)
