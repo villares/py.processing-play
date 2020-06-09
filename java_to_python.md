@@ -228,10 +228,10 @@ void draw ()
   xpos = xpos + (xspeed * xdirection);
   ypos = ypos + (yspeed * ydirection);
     
-  if (xpos> width-rad || xpos <rad) {
+  if (xpos > width-rad || xpos < rad) {
     xdirection * = -1;
   }
-  if (ypos> height-rad || ypos <rad) {
+  if (ypos > height-rad || ypos < rad) {
     ydirection * = -1;
   }
 
@@ -248,7 +248,7 @@ yspeed = 2.2;   # Speed of the shape
 xdirection = 1; # Left or Right
 ydirection = 1; # Top to Bottom
 
-def setup (): **Python**
+def setup (): 
     size (600, 300)
     global xpos, ypos # xpos, ypos are assigned first here in setup
     noStroke ()
