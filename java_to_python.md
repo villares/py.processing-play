@@ -193,7 +193,9 @@ result = a if cond else b
 
 #### switch & case
 
-There is no `switch / case` in Python, you can change it to a sequence of `if / elif` or, if just to call different functions, a function dictionary [TO DO example for this].
+There is no `switch / case` in Python, you can change it to a sequence of `if / elif` or, if just to call different functions, a function dictionary.
+
+`# TO DO: example for switch case translation.`
 
 ### Global variables
 
@@ -320,8 +322,11 @@ def setup():
 
 #### Declaring a class
 
-Class declarations change slightly, roughly, the `def __init__(self …): …` method plays the role of the *constructor* method of a Java class. See the `MRect` class in the example **Basics > Objects > Objects** that comes with the Processing IDE. You'll have to add `self` as the first parameter of each method, and `self.` to access it's members, methods & attributes.
+Class declarations change slightly, roughly, the `def __init__(self …): …` method plays the role of the *constructor* method definition of a Java class (the method with the same name as the class, that does the object initialization).
 
+You'll have to add `self` as the first parameter of each method, and then use `self.` to access it's members, any methods or attributes of the class or instance.
+
+Let's see the `MRect` class in the example **Basics > Objects > Objects** that comes with the Processing IDE. 
 **Java**
 
 ```java
@@ -390,11 +395,13 @@ class MRect:
                  self.ypos, self.w, height * self.h)
 ```
 
+`# TO DO: How to deal with inheritance & method/function overloading`
+
 ### Data structures
 
-Arrays like `int[]`, `float[]` or `PVector[]` usually become lists in Python (sometimes tuples if they are created and left alone).  ArrayList is very much like a list:
+Arrays like `int[]`, `float[]` or `PVector[]` usually become lists in Python (sometimes tuples if they are created and left alone). And a Java *ArrayList* is very much like a Python list:
 
-**Java**
+**Java**material-aulas
 
 ```java
 ArrayList<Flag> flags; // a list of Flag de objetos
@@ -432,11 +439,19 @@ def setup():
 int[][] board;
 board = new int[grid_w][grid_h]
 ```
-A list of lists. No, you don't *need* numpy 2D arrays in Processing Python mode (and you don't have them...).
+Use a list of lists! No, you don't *need* numpy 2D arrays in Processing Python mode (and you don't have them...).
+
+Here's how to initialize the quivalent to a Java 2D array of ints using a list comprehension. 
 
 ```Python
 board = [[0] * grid_w for _ in range(grid_h)]
 ```
 
+Instead of `0` it could be a `None` placeholder or any calculated value if the structure will hold other things.
+
+
+---
+
+Work in progress... and you can contribute! Open an issue at [github.com/villares/py.processing-play](https://github.com/villares/py.processing-play)
 
 
