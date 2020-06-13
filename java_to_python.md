@@ -283,7 +283,7 @@ Use the menu command **Sketch > Import Library...**  to add the line with `add_l
 **Java**
 
 ```java
-import com.hamoid. *; // import VideoExport library in Java mode
+import com.hamoid.*; // import VideoExport library in Java mode
 ```
 
 **Python**
@@ -401,7 +401,7 @@ class MRect:
 
 Arrays like `int[]`, `float[]` or `PVector[]` usually become lists in Python (sometimes tuples if they are created and left alone). And a Java *ArrayList* is very much like a Python list:
 
-**Java**material-aulas
+**Java** 
 
 ```java
 ArrayList<Flag> flags; // a list of Flag de objetos
