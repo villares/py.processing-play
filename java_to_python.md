@@ -58,7 +58,7 @@ Similar to `null` in Java we have the special value `None` in Python, they are n
 
 The simplest case is a `for` based on a counter, such as `for (int i=0; i<limit; i++) { …` which translates into `for i in range(limit): …` and the so-called *for each* loop, shown in the chart, is also very straightforward.
 
-But if you have a Java `for` loop with a *float* step, as the `range()` based `for` construct in Python works only with integers, you'll have to convert it to a `while` loop like in the example below.
+But if you have a Java `for` loop with a *float* step, as the `range()` based `for` construct in Python works only with integers, you might want to convert it to a `while` loop like in the example below.
 
 **Java**
 
