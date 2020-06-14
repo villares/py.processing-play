@@ -324,7 +324,7 @@ else:
 
 In Java mode Processing the libraries are imported with `import` but in Python mode this instruction is more often used to import *modules* from the Python's standard library, and **.py** files presented as other IDE tabs (which, unlike in Java mode, are not automatically a part of the sketch).
 
-To use import libraries, the menu command **Sketch > Import Library...**  will create the line with `add_library()` and the correct argument.
+To import standard Processing libraries, use the menu command **Sketch > Import Library...**  to create the line with `add_library()` and the correct argument.
 
 **Java**
 
