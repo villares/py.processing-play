@@ -270,15 +270,61 @@ def draw ():
     ellipse (xpos, ypos, rad * 2, rad * 2)
 ```
 
-### Importing libraries and other sketch tabs
+### Strings
+
+If your code contains *non-ASCII* strings (like letters with accents or emojis) it can be a good idea to start your sketch with:
+
+```python
+from __future__ import unicode_literals
+```
+
+Otherwise you'll have to precede those strings with `u` like this: `u"Éclair"`.
+
+**Type *char* in Java**
+
+Java has a special type for characters, *char*, with literals written in code with single quotes `' '`, Python makes no such distinction, using single character *strings* (in `key`, for instance) and single or double quotes for *strings* in general. 
+
+To get a character at a certain position in a *string*, in Java, a special method is needed:
+ 
+```Java
+String word = "love";
+char c = word.charAt(1); // c = 'o'
+```
+
+In Python the index notation `[i]` gets you a single character *string* from a *string*:
+
+```Python
+word = 'love'
+c = word[1] # c = 'o'
+```
+
+**Comparing *strings* in Java**
+
+```java
+String str1 = "love";
+String str2 = "love";
+// Test if str1 is equal to str2
+if (str1.equals(str2)) {
+  println("equal"); } else {
+  println("not equal"); 
+}
+```
+**Comparing *strings* in Python**
+
+```python
+str1 = "love"
+str2 = "love"
+# Test if str1 is equal to str2
+if str1 == str2:
+  println("equal")
+else:
+  println("not equal")
+```
+### Importing libraries and using multiple tabs in your sketch
 
 In Java mode Processing the libraries are imported with `import` but in Python mode this instruction is more often used to import *modules* from the Python's standard library, and **.py** files presented as other IDE tabs (which, unlike in Java mode, are not automatically a part of the sketch).
 
-```python
-from other_tab import *  # a tab from the file other_tab.py
-```
-
-Use the menu command **Sketch > Import Library...**  to add the line with `add_library()` and the correct argument.
+To use import libraries, the menu command **Sketch > Import Library...**  will create the line with `add_library()` and the correct argument.
 
 **Java**
 
@@ -290,6 +336,18 @@ import com.hamoid.*; // import VideoExport library in Java mode
 
 ```python
 add_library ('VideoExport') # the same VideoExport library in Python mode
+```
+
+To use multiple tabs in Python mode, treat them like Python modules and use `import`.
+
+```python
+from other_tab import *  # a tab from the file other_tab.py
+```
+
+If the tab contain *non-ASCII* characters you have to add this special comment at the top of it:
+
+```python
+# -*- coding: utf-8 -*-
 ```
 
 ### Object orientation
