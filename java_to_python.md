@@ -144,7 +144,7 @@ for i, p in reversed(list(enumerate(self.particles))):
 
 ### `if`, `else` and their friends
 
-Note that the `if` condition in Python does not have the required parentheses as in Java. The combination of `else if`  becomes the `elif` contraction.
+Note that the `if` condition in Python does not require the parentheses as in Java. The combination of `else if`  becomes the `elif` contraction.
 
 **Java**
 ```java
@@ -195,7 +195,38 @@ result = a if cond else b
 
 There is no `switch / case` in Python, you can change it to a sequence of `if / elif` or, if just to call different functions, a function dictionary.
 
-`# TO DO: example for switch case translation.`
+**Java**
+```java
+char letter = 'b';
+
+switch(letter) {
+  case 'a':
+  case 'A': 
+    println("Alpha");  // Does not execute in this example
+    break;
+  case 'b':
+  case 'B': 
+    println("Bravo");  // Prints "Bravo"
+    break;
+  default:            // default is optional
+    println("Not found");  
+    break;
+}
+```
+
+**Python**
+```python
+letter = 'b'
+
+if letter == 'a' or letter == 'A':
+    println("Alpha")  # Does not execute in this example
+elif letter in ('b', 'B'):
+    println("Bravo")  # Prints "Bravo"
+else:
+    println("Not found")  
+```
+
+`# TO DO: example for switch case as a dicr()`
 
 ### Global variables
 
