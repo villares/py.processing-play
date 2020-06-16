@@ -316,7 +316,7 @@ Otherwise you'll have to precede those strings with `u` like this: `u"Éclair"`.
 Java has a special type for characters, *char*, with literals written in code with single quotes `' '`, Python makes no such distinction, using single character *strings* (in `key`, for instance) and single or double quotes for *strings* in general. 
 
 To get a character at a certain position in a *string*, in Java, a special method is needed:
- 
+
 ```Java
 String word = "love";
 char c = word.charAt(1); // c = 'o'
@@ -353,7 +353,7 @@ else:
 ```
 ### Importing libraries and using multiple tabs in your sketch
 
-In Java mode Processing the libraries are imported with `import` but in Python mode this instruction is more often used to import *modules* from the Python's standard library, and **.py** files presented as other IDE tabs (which, unlike in Java mode, are not automatically a part of the sketch).
+In Processing Java mode the libraries are imported with `import` but in Python mode this instruction is more often used to import *modules* from the *Python standard library*, and **.py** files presented as other IDE tabs (which, unlike in Java mode, are not automatically a part of the sketch).
 
 To import standard Processing libraries, use the menu command **Sketch > Import Library...**  to create the line with `add_library()` and the correct argument.
 
@@ -484,7 +484,9 @@ class MRect:
                  self.ypos, self.w, height * self.h)
 ```
 
-`# TO DO: How to deal with inheritance & method/function overloading`
+`# TO DO:`
+
+- How to deal with inheritance & method/function overloading.
 
 ### Data structures
 
@@ -538,6 +540,13 @@ board = [[0] * grid_w for _ in range(grid_h)]
 
 Instead of `0` it could be a `None` placeholder or any calculated value if the structure will hold other things.
 
+`# TO DO:`
+
+- `HashMap` and `FloatDict`, are *mapping* data structures in Java, they become dictionaries (`dict`) in Python.
+
+- If an *array* or an `ArrayList` is used to retain some kind o 'history', you might want to learn about `deque` (`from collections import deque`).
+
+- Very simple classes in Java might suitably become just a *named tuple*.
 
 ---
 
