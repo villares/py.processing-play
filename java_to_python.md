@@ -117,15 +117,6 @@ for (int i = particles.size() - 1; i >= 0; i--) {
 **Python**
 
 ```python
-for p in reversed(particles):
-    p.run()
-    if p.isDead():
-        del p
-```
-
-or, if you need the index:
-
-```python
 for i in reversed(range(len(particles))):
     p = particles[i]
     p.run()
@@ -133,13 +124,13 @@ for i in reversed(range(len(particles))):
         del particles[i]
 ```
 
-or yet:
+or:
 
 ```python
 for i, p in reversed(list(enumerate(self.particles))):
     p.run()
     if p.isDead():
-        del p # or del self.particles[i]
+        del self.particles[i]
 ```
 
 ### `if`, `else` and their friends
