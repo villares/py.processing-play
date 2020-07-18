@@ -109,7 +109,7 @@ for (int i = particles.size() - 1; i >= 0; i--) {
   Particle p = particles.get(i);
   p.run();
   if (p.isDead()) {
-    particles.remove(i);
+    particles.remove(p);
   }
 }
 ```
@@ -127,10 +127,10 @@ for i in reversed(range(len(particles))):
 or:
 
 ```python
-for i, p in reversed(list(enumerate(self.particles))):
+for i, p in reversed(list(enumerate(particles))):
     p.run()
     if p.isDead():
-        del self.particles[i]
+        del particles[i]
 ```
 
 ### `if`, `else` and their friends
