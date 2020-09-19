@@ -1,6 +1,6 @@
 
-thread_ongoing = False
 sort_by = None
+thread_on = False
 
 def setup():
     global img, original
@@ -9,7 +9,6 @@ def setup():
     img = original.get()
     img.loadPixels()
     println("loaded " + str(len(img.pixels)))
-    noLoop()
 
 
 def draw():
@@ -17,59 +16,52 @@ def draw():
     background(0)
     image(original, 0, 0)
     image(img, 200, 0)
-    if not frameCount % 20:
-        img.updatePixels()
-        
-
+           
 def keyPressed():
     global thread_ongoing, sort_by
-    
-    options = {
-        "w" : brightness,
-        "r" : red,
-        "g" : green,
-        "b" : blue,
-        "h" : hue,
-        "s" : saturation,
-        "c" : lambda pix: pix, # sort color as int
-        }
-    
-    sort_by = options.get(key)
-    if sort_by:
-        if thread_ongoing:   
-            pass
-        else:    
-            thread_ongoing = True
-            thread("sort_it")
-    else:
-        thread_ongoing = False
 
-    
+    options = {
+        "w": brightness,
+        "r": red,
+        "g": green,
+        "b": blue,
+        "h": hue,
+        "s": saturation,
+        "c": lambda pix: pix,  # sort color as int
+    }
+
+    sort_by = options.get(key)
+    if not thread_on:
+        thread("sort_it")
+        
 def sort_it():
+    global sort_by, thread_on
+    thread_on = True
     print("sort_it() started")
-    global thread_ongoing
-    if thread_ongoing:
-        print(key)
-        for i in range(len(img.pixels)):
-            record_value = -1000000000
-            selected_pixel = i
-            for j in range (i,  len(img.pixels)):
-                pix = img.pixels[j]
-                if sort_by:
-                    value = sort_by(pix)                
-                    if value > record_value:
-                        selected_pixel = j
-                        record_value = value
-                else:
-                    break
-            if not sort_by:
+    print(key)
+    total = len(img.pixels)
+    pxs = img.pixels
+    for i in range(total):
+        record_value = -10000000000000
+        selected_pixel = i
+        for j in range(i, total):
+            pix = pxs[j]
+            if sort_by:
+                value = sort_by(pix)
+                if value > record_value:
+                    selected_pixel = j
+                    record_value = value
+            else:
                 break
-            # troca o pixel em selected_pixel com o i
-            temp = img.pixels[i]
-            img.pixels[i] = img.pixels[selected_pixel]
-            img.pixels[selected_pixel] = temp
-            img.updatePixels()
-            redraw()
-        println("sort done (or interrupted)!")
-        thread_ongoing = False
+        if not sort_by:
+            break
+        # troca o pixel em selected_pixel com o i
+        img.pixels[i], img.pixels[selected_pixel] \
+            = img.pixels[selected_pixel], img.pixels[i]
+        pxs = img.pixels
+        img.updatePixels()
+
+    thread_on = False
+    println("sort done (or interrupted)!")
     println("sort_it() end")
+    # return
