@@ -26,12 +26,11 @@ def draw():
     p2x, p2y = 150, 200
     if point_over_line(mouse.x, mouse.y,
                        p1x, p1y, p2x, p2y,
-                       TOLERANCE) == True:
+                       tolerance=TOLERANCE) == True:
         stroke(255, 0, 0)
         point(mouse.x, mouse.y)
         stroke(0, 0, 255)
     line(p1x, p1y, p2x, p2y)
-
 
 def point_over_line(px, py, lax, lay, lbx, lby,
                     tolerance=EPSILON):
