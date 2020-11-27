@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 def setup():
-    size(400, 300, P2D)
+    size(400, 300)
     println(option_pane("Escolha uma opção",
                         "qual destes?",
                         ["A", "B", "C"],
@@ -11,7 +11,7 @@ def setup():
 def option_pane(title, message, options, default=''):
     from javax.swing import JOptionPane
     return JOptionPane.showInputDialog(
-        frame,
+        None,
         message,
         title,
         JOptionPane.INFORMATION_MESSAGE,
