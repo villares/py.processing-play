@@ -7,6 +7,6 @@ def setup():
     else:
         println(answer) # Canceled dialog will print None
 
-def input(message=''):
+def input(question='', suggestion=''):
     from javax.swing import JOptionPane
-    return JOptionPane.showInputDialog(frame, message)
+    return JOptionPane.showInputDialog(None, question, suggestion)
