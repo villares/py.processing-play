@@ -1,3 +1,3 @@
-def input(message=''):
+def input(message='', default=''):
     from javax.swing import JOptionPane
-    return JOptionPane.showInputDialog(frame, message)
+    return JOptionPane.showInputDialog(None, message, default='')
