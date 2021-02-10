@@ -58,7 +58,7 @@ Similar to `null` in Java we have the special value `None` in Python, they are n
 
 The simplest case is a `for` based on a counter, such as `for (int i=0; i<limit; i++) { …` which translates into `for i in range(limit): …` and the so-called *for each* loop, shown in the chart, is also very straightforward.
 
-But if you have a Java `for` loop with a *float* step, as the `range()` based `for` construct in Python works only with integers, you might want to convert it to a `while` loop like in the example below.
+But if you have a Java `for` loop with a *float* step, as the `range()` based `for` construct in Python works only with integers, you might want to define a 'special' non-int range generator, or convert it to a `while` loop like in the example below.
 
 **Java**
 
@@ -69,7 +69,25 @@ for (float angle=0; angle < TWO_PI; angle += angleStep){
 }
 ```
 
+
 **Pyton**
+
+Defining a 'special' range generator:
+ 
+
+```python
+def frange(start, stop, step):
+    from itertools import count, takewhile
+    return takewhile(lambda x: x < stop, count(start, step))
+
+step = TWO_PI / 18
+for angle in frange(0, TWO_PI, step):
+    …    
+
+```
+
+Or converting to a `while` loop:
+
 
 ```python
 angleStep = TWO_PI / 18
@@ -78,6 +96,7 @@ while angle < TWO_PI:
     …
     angle += angleStep
 ```
+
 
 Here an example of a loop made just to get objects from a data structure:
 
