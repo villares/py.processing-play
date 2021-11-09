@@ -1,6 +1,12 @@
 ## Processing Python Mode Playground
 ### `this is a repository with code snippets at` [`github.com/villares/py.processing-play`](https://github.com/villares/py.processing-play)
 
+---
+
+The license for this repository is Apache 2.0, but please note that some code comes from porting Processing.org examples or other free/open sources metioned in the files, so check the source for other attributions or ask for clarification.
+
+---
+
 To run these code snippets, you'll need to download the Processing IDE and set up Python Mode! 
 
 *  [How to install Processing Python mode](https://abav.lugaralgum.com/como-instalar-o-processing-modo-python/index-EN.html)
