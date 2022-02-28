@@ -1,8 +1,7 @@
-# Desenhos simétricos - 2019 Alexandre Villares
-# Para Processing modo Python
-# Como instalar o Processing em casa:
-# https://abav.lugaralgum.com/como-instalar-o-processing-modo-python/   
-# Sob licença GPL v3.0
+# Desenhos simétricos - 2019-2022 Alexandre Villares - code under GPL v3.0
+# Use Processing Python mode to run this, youll need to install Geomerative too 
+# from the Processing IDE - instructions to install Python mode at:
+# https://abav.lugaralgum.com/como-instalar-o-processing-modo-python/index-EN   
 
 from functools import reduce
 
@@ -12,9 +11,8 @@ add_library('pdf')
 segments = []
 next_seg_preview = []
 seg_limit = 8
-
-start_w = 10 # segment width
-end_w = 10
+start_w = 10       # segment (starting) width
+end_w = 10         # ... ending width (for trapezoidal segs)
 divisions = 5      # Use "+" and "-" to change
 save_pdf = False   # Use "p" to save a PDF
 mirror = True      # Use "m" to toggle
@@ -52,13 +50,9 @@ def draw():
         save_pdf = False
 
     if next_seg_preview and len(segments) < seg_limit:
-        push()
         px, py = next_seg_preview
-        for num in range(divisions):
-            rotate(radians(360 / divisions))
-            fill(255, 100)
-            preview_bars(px, py, mouseX - mh, mouseY - mv, start_w, end_w, mirror)
-        pop()
+        preview_bars(px, py, mouseX - mh, mouseY - mv, start_w, end_w, mirror)
+        
         
 def mousePressed(): 
     if len(segments) < seg_limit:
@@ -91,10 +85,15 @@ def keyPressed():
         divisions += 1        
    
 def preview_bars(p1x, p1y, p2x, p2y, w1, w2, mirror):
-    draw_poly(bar_points(p1x, p1y, p2x, p2y, w1, w2))
-    if mirror:
-        draw_poly(bar_points(p1x, -p1y, p2x, -p2y, w1, w2))    
-    
+    push()        
+    for num in range(divisions):
+        rotate(radians(360 / divisions))
+        fill(255, 100)
+        draw_poly(bar_points(p1x, p1y, p2x, p2y, w1, w2))
+        if mirror:
+            draw_poly(bar_points(p1x, -p1y, p2x, -p2y, w1, w2))    
+    pop()
+
 def draw_poly(points):
     beginShape()  
     for x, y in points:
