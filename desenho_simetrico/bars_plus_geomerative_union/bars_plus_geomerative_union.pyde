@@ -16,7 +16,7 @@ end_w = 10         # ... ending width (for trapezoidal segs)
 divisions = 5      # Use "+" and "-" to change
 save_pdf = False   # Use "p" to save a PDF
 mirror = True      # Use "m" to toggle
-                   # presse <backspace> to remove last segment/click
+                   # press <backspace> to remove last segment/click
 def setup():
     size(500, 500)
     global mh, mv
@@ -42,10 +42,14 @@ def draw():
             bars.append(RPolygon([RPoint(x, y) for x, y in rotated_points]))
             if mirror:
                 bars.append(RPolygon([RPoint(x, - y) for x, y in rotated_points]))
+                
     if len(bars) > 1:
-        union = reduce(lambda polya, polyb : polya.union(polyb), bars)
-        RG.shape(union.toShape())
-        
+        # union = reduce(lambda polya, polyb : polya.union(polyb), bars)
+        result = bars.pop()
+        for bar in bars:
+            result = result.union(bar)
+        RG.shape(result.toShape())
+
     if save_pdf:
         endRecord()
         save_pdf = False
