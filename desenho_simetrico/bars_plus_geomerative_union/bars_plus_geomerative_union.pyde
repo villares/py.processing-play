@@ -24,12 +24,13 @@ def setup():
     RG.init(this)
 
 def draw():
+    background(0, 128, 32)  # it's better to leave the background out!
+
     global save_pdf
     if save_pdf:
         beginRecord(PDF, "####.pdf")
    
     translate(mh, mv)
-    # background(0, 128, 32)  # it's better to leave the background out!
     bars = []
     for num in range(divisions):
         angle = radians(360.0 / divisions) * num
