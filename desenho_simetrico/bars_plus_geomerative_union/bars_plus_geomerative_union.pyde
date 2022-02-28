@@ -29,7 +29,7 @@ def draw():
         beginRecord(PDF, "####.pdf")
    
     translate(mh, mv)
-    background(0, 128, 32)  # verde (mude a sua cor!)
+    # background(0, 128, 32)  # it's better to leave the background out!
     bars = []
     for num in range(divisions):
         angle = radians(360.0 / divisions) * num
@@ -52,8 +52,7 @@ def draw():
     if next_seg_preview and len(segments) < seg_limit:
         px, py = next_seg_preview
         preview_bars(px, py, mouseX - mh, mouseY - mv, start_w, end_w, mirror)
-        
-        
+
 def mousePressed(): 
     if len(segments) < seg_limit:
         if next_seg_preview:
@@ -63,7 +62,7 @@ def mousePressed():
             next_seg_preview[:] = mouseX - mh, mouseY - mv
         elif mouseButton == RIGHT:
             next_seg_preview[:] = []
-    
+
 def keyPressed():
     global save_pdf, divisions, mirror
     if key == "m":
@@ -99,7 +98,7 @@ def draw_poly(points):
     for x, y in points:
         vertex(x, y)
     endShape(CLOSE)        
-        
+
 def bar_points(p1x, p1y, p2x, p2y, w1, w2=None, o=0):
     """ 
     trapezoid, draws a rotated quad with axis
@@ -118,7 +117,7 @@ def bar_points(p1x, p1y, p2x, p2y, w1, w2=None, o=0):
         )
     return [rot(pt, angle, center=(p1x, p1y)) 
               for pt in unrotated_points]
-    
+
 def rot(pt, angle, center=None):
     xp, yp = pt
     x0, y0 = center or (0, 0)
