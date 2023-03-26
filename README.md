@@ -1,3 +1,10 @@
+---
+
+**ATTENTION:** I have no plans to update this as I'm moving my work and teaching materials to use [py5](https://py5coding).
+You might find some stuff I had here at [processing-python](https://github.com/villares/processing-python), and in Portuguese at [material-aulas](https:///github.com/villares/material-aulas).
+
+---
+
 ## Processing Python Mode Playground
 ### `this is a repository with code snippets at` [`github.com/villares/py.processing-play`](https://github.com/villares/py.processing-play)
 
